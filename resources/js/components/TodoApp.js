@@ -3,13 +3,14 @@ import ReactDom from 'react-dom';
 
 
 function RenderRows(props) {
-    console.log(props);
     return props.todos.map(todo => {
         return (
             <tr key={todo.id}>
                 <td>{todo.id}</td>
                 <td>{todo.title}</td>
-                <td><button className="btn btn-secondary">完了</button></td>
+                <td>
+                    <button className="btn btn-secondary">完了</button>
+                </td>
             </tr>
         )
     });
@@ -20,7 +21,6 @@ function TodoApp() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-        console.log("aaaa");
         axios
             .get('/api/get')
             .then((res) => {
@@ -29,7 +29,7 @@ function TodoApp() {
             .catch(error => {
                 console.log(error)
             })
-    });
+    }, []);
 
     return (
         <>
