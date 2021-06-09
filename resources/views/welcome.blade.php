@@ -36,8 +36,10 @@
                     @endauth
                 </div>
             @endif
-
-            <div id="example"></div>
+            <div class="container">
+                <h3 class="mt-5">Todo 管理アプリ</h3>
+                <div id="example"></div>
+            </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
