@@ -9,7 +9,7 @@ function RenderRows(props) {
                 <td>{todo.id}</td>
                 <td>{todo.title}</td>
                 <td>
-                    <button className="btn btn-secondary">完了</button>
+                    <button></button>
                 </td>
             </tr>
         )
@@ -36,9 +36,9 @@ function TodoApp() {
             <table className="table mt-5">
                 <thead>
                     <tr>
+                        <th>ID</th>
+                        <th>タイトル</th>
                         <th></th>
-                        <th>完了</th>
-                        <th>完了</th>
                     </tr>
                 </thead>
                 <tbody>
