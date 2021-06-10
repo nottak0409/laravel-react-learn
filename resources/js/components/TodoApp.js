@@ -1,17 +1,17 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
-
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 
 function RenderRows(props) {
     return props.todos.map(todo => {
         return (
-            <tr key={todo.id}>
-                <td>{todo.id}</td>
-                <td>{todo.title}</td>
-                <td>
+            <TableRow key={todo.id}>
+                <TableCell>{todo.id}</TableCell>
+                <TableCell>{todo.title}</TableCell>
+                <TableCell>
                     <button></button>
-                </td>
-            </tr>
+                </TableCell>
+            </TableRow>
         )
     });
 }
@@ -33,18 +33,18 @@ function TodoApp() {
 
     return (
         <>
-            <table className="table mt-5">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>タイトル</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <Table className="table mt-5">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>タイトル</TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
                     <RenderRows todos={todos}/>
-                </tbody>
-            </table>
+                </TableBody>
+            </Table>
         </>
     );
 }
