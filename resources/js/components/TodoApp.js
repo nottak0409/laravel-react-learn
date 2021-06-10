@@ -33,6 +33,11 @@ function TodoApp() {
 
     return (
         <>
+            <div className="form-group mt-4">
+                <label htmlFor="todo">新規Todo</label>
+                <input type="text" className="form-control" name="todo"/>
+            </div>
+            <button className="btn btn-primary">新規作成</button>
             <Table className="table mt-5">
                 <TableHead>
                     <TableRow>

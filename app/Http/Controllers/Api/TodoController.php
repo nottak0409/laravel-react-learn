@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    public function create() {
-        
+    public function create(Request $request) {
+        $todo = new Todo;
+        $todo->title = $request->title;
+        $todo->save();
+
+        $todo = $todo::all();
+        return $todo;
     }
 }
