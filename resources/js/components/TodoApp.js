@@ -22,13 +22,11 @@ function TodoApp() {
     const [title, setTitle] = useState("");
 
     const handleChange = (event) => {
-        console.log(event.target.title);
-        setTitle(event.target.title)
+        setTitle(event.target.value)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(event);
     }
 
     useEffect(() => {
@@ -41,7 +39,7 @@ function TodoApp() {
                 console.log(error)
             })
     }, []);
-
+    console.log(title);
     return (
         <>
             <form onSubmit={handleSubmit}>

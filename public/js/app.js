@@ -6262,13 +6262,11 @@ function TodoApp() {
       setTitle = _useState4[1];
 
   var handleChange = function handleChange(event) {
-    console.log(event.target.title);
-    setTitle(event.target.title);
+    setTitle(event.target.value);
   };
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -6278,6 +6276,7 @@ function TodoApp() {
       console.log(error);
     });
   }, []);
+  console.log(title);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
       onSubmit: handleSubmit,
