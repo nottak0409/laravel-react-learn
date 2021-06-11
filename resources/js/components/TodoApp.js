@@ -19,6 +19,17 @@ function RenderRows(props) {
 function TodoApp() {
 
     const [todos, setTodos] = useState([]);
+    const [title, setTitle] = useState("");
+
+    const handleChange = (event) => {
+        console.log(event.target.title);
+        setTitle(event.target.title)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(event);
+    }
 
     useEffect(() => {
         axios
@@ -33,11 +44,13 @@ function TodoApp() {
 
     return (
         <>
-            <div className="form-group mt-4">
-                <label htmlFor="todo">新規Todo</label>
-                <input type="text" className="form-control" name="todo"/>
-            </div>
-            <button className="btn btn-primary">新規作成</button>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label className="mr-2 border border-primary">新規Todo</label>
+                    <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
+                    <button className="btn btn-primary">新規作成</button>
+                </div>
+            </form>
             <Table className="table mt-5">
                 <TableHead>
                     <TableRow>
