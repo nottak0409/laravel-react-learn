@@ -3,13 +3,17 @@ import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 
 function RenderRows(props) {
+    const handleClick = (id) => {
+        console.log(id);
+    }
+
     return props.todos.map(todo => {
         return (
             <TableRow key={todo.id}>
                 <TableCell>{todo.id}</TableCell>
                 <TableCell>{todo.title}</TableCell>
                 <TableCell>
-                    <Button color="secondary">削除</Button>
+                    <Button color="secondary" onClick={() => handleClick(todo.id)}>削除</Button>
                 </TableCell>
             </TableRow>
         )
