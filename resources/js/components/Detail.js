@@ -1,48 +1,11 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Detail from "./Detail";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function RenderRows(props) {
-    //削除ボタンをクリックしたときに働く関数
-    const handleClick = (id) => {
-        event.preventDefault();
-        const data = { id: id }
+function Detail() {
 
-        axios
-            .post('/delete', data)
-            .then((res) => {
-                props.setTodos(res.data)
-            }).catch(error => {
-                console.log(error)
-            })
-    }
-
-
-    //Todo一覧を表示する
-    return props.todos.map(todo => {
-        return (
-            <TableRow key={todo.id}>
-                <TableCell>{todo.id}</TableCell>
-                <TableCell>
-                <Router>
-                    <Link to="/Detail/{todo.id}">
-                        {todo.title}
-                    </Link>
-                </Router>
-                </TableCell>
-                <TableCell>
-                    <Button color="secondary" onClick={() => handleClick(todo.id, props.setTodos)}>削除</Button>
-                </TableCell>
-            </TableRow>
-        )
-    });
-}
-
-function TodoApp() {
-
-    const [todos, setTodos] = useState([]);
+    const [todo, setTodo] = useState([]);
     const [title, setTitle] = useState("");
 
     const handleChange = (event) => {
@@ -91,11 +54,17 @@ function TodoApp() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <RenderRows todos={todos} setTodos={setTodos} />
+                    <TableRow key={todo.id}>
+                        <TableCell>{todo.id}</TableCell>
+                        <TableCell>{todo.title}</TableCell>
+                        <TableCell>
+                            <Button color="secondary" onClick={() => handleClick(todo.id, props.setTodos)}>削除</Button>
+                        </TableCell>
+                    </TableRow>
                 </TableBody>
             </Table>
         </>
     );
 }
 
-export default TodoApp;
+export default Detail
