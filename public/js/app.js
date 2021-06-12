@@ -7987,6 +7987,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Detail() {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
   var id = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().id;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
@@ -7997,11 +7998,26 @@ function Detail() {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       title = _useState4[0],
-      setTitle = _useState4[1];
+      setTitle = _useState4[1]; //inputのタイトルを変更
+
 
   var handleChange = function handleChange(event) {
     setTitle(event.target.value);
-  };
+  }; //削除ボタンをクリックしたときに働く関数
+
+
+  var handleClick = function handleClick(id) {
+    event.preventDefault();
+    var data = {
+      id: id
+    };
+    axios.post('/delete', data).then(function (res) {
+      history.push('/');
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }; //編集時の処理
+
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
@@ -8071,7 +8087,7 @@ function Detail() {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
               color: "secondary",
               onClick: function onClick() {
-                return handleClick(todo.id, props.setTodos);
+                return handleClick(todo.id);
               },
               children: "\u524A\u9664"
             })

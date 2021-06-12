@@ -2,17 +2,34 @@ import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 function Detail() {
+    const history = useHistory();
     const id = useParams().id;
     const [todo, setTodo] = useState([]);
     const [title, setTitle] = useState("");
 
+    //inputのタイトルを変更
     const handleChange = (event) => {
         setTitle(event.target.value)
     }
 
+    //削除ボタンをクリックしたときに働く関数
+    const handleClick = (id) => {
+        event.preventDefault();
+        const data = { id: id }
+
+        axios
+            .post('/delete', data)
+            .then((res) => {
+                history.push('/');
+            }).catch(error => {
+                console.log(error)
+            })
+    }
+
+    //編集時の処理
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title }
@@ -62,7 +79,7 @@ function Detail() {
                         <TableCell>{todo.id}</TableCell>
                         <TableCell>{todo.title}</TableCell>
                         <TableCell>
-                            <Button color="secondary" onClick={() => handleClick(todo.id, props.setTodos)}>削除</Button>
+                            <Button color="secondary" onClick={() => handleClick(todo.id)}>削除</Button>
                         </TableCell>
                     </TableRow>
                 </TableBody>
