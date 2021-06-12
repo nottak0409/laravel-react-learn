@@ -30,4 +30,11 @@ class TodoController extends Controller
         $todo = $todo::all();
         return $todo;
     }
+
+    //詳細画面のメソッド
+    public function show(Request $request) {
+        $id = $request->id;
+        $todo = Todo::find($id);
+        return $todo;
+    }
 }

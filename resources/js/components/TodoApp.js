@@ -27,7 +27,7 @@ function RenderRows(props) {
                 <TableCell>{todo.id}</TableCell>
                 <TableCell>
                 <Router>
-                    <Link to={'/Detail/' + todo.id}>
+                    <Link to={'/detail/' + todo.id}>
                         {todo.title}
                     </Link>
                 </Router>
