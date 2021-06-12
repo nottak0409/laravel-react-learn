@@ -6270,9 +6270,8 @@ function TodoApp() {
     var data = {
       title: title
     };
-    console.log(data);
     axios.post('/add', data).then(function (res) {
-      console.log(res);
+      setTodos(res.data);
     })["catch"](function (error) {
       console.log(error);
     });

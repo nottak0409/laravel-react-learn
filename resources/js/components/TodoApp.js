@@ -28,11 +28,10 @@ function TodoApp() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title }
-        console.log(data);
         axios
             .post('/add', data)
             .then((res) => {
-                console.log(res)
+                setTodos(res.data)
             }).catch(error => {
                 console.log(error)
             })
