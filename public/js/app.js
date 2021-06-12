@@ -6267,6 +6267,15 @@ function TodoApp() {
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
+    var data = {
+      title: title
+    };
+    console.log(data);
+    axios.post('/add', data).then(function (res) {
+      console.log(res);
+    })["catch"](function (error) {
+      console.log(error);
+    });
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -6276,7 +6285,6 @@ function TodoApp() {
       console.log(error);
     });
   }, []);
-  console.log(title);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
       onSubmit: handleSubmit,

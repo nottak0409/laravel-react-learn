@@ -27,6 +27,15 @@ function TodoApp() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const data = { title: title }
+        console.log(data);
+        axios
+            .post('/add', data)
+            .then((res) => {
+                console.log(res)
+            }).catch(error => {
+                console.log(error)
+            })
     }
 
     useEffect(() => {
@@ -39,7 +48,6 @@ function TodoApp() {
                 console.log(error)
             })
     }, []);
-    console.log(title);
     return (
         <>
             <form onSubmit={handleSubmit}>
