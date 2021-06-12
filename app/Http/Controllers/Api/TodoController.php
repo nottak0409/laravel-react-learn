@@ -37,4 +37,13 @@ class TodoController extends Controller
         $todo = Todo::find($id);
         return $todo;
     }
+
+    //編集時のメソッド
+    public function edit(Request $request) {
+        $id = $request->id;
+        $title = $request->title;
+        $todo = Todo::where('id', $id)->update(['title' => $title]);
+        $todo = Todo::find($id);
+        return $todo;
+    }
 }

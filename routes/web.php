@@ -21,4 +21,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/show', [App\Http\Controllers\Api\TodoController::class, 'show'])->name('show');
 Route::post('/add', [App\Http\Controllers\Api\TodoController::class, 'create'])->name('add');
+Route::post('/edit', [App\Http\Controllers\Api\TodoController::class, 'edit'])->name('edit');
 Route::post('/delete', [App\Http\Controllers\Api\TodoController::class, 'delete'])->name('delete');

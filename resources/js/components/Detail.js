@@ -32,12 +32,12 @@ function Detail() {
     //編集時の処理
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = { title: title }
+        const data = { title: title, id: id }
         axios
-            .post('/add', data)
+            .post('/edit', data)
             .then((res) => {
-                setTodos(res.data)
-                setTitle("");
+                setTodo(res.data)
+                setTitle(res.data.title);
             }).catch(error => {
                 console.log(error)
             })
@@ -61,6 +61,7 @@ function Detail() {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label className="mr-2 border border-primary">Todo編集</label>
+                    <input type="hidden" name="id" value="{id}" />
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
                     <Button color="primary" type="submit" disabled={title === ""}>編集</Button>
                 </div>

@@ -8022,11 +8022,12 @@ function Detail() {
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     var data = {
-      title: title
+      title: title,
+      id: id
     };
-    axios.post('/add', data).then(function (res) {
-      setTodos(res.data);
-      setTitle("");
+    axios.post('/edit', data).then(function (res) {
+      setTodo(res.data);
+      setTitle(res.data.title);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -8051,6 +8052,10 @@ function Detail() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
           className: "mr-2 border border-primary",
           children: "Todo\u7DE8\u96C6"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "hidden",
+          name: "id",
+          value: "{id}"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "text",
           className: "form-control mr-2",
