@@ -11,7 +11,6 @@ function Detail() {
     const handleChange = (event) => {
         setTitle(event.target.value)
     }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title }
@@ -67,4 +66,4 @@ function Detail() {
     );
 }
 
-export default Detail
+export default Detail;
