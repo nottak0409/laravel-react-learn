@@ -3,17 +3,29 @@ import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 
 function RenderRows(props) {
+    //削除ボタンをクリックしたときに働く関数
     const handleClick = (id) => {
-        console.log(id);
+        event.preventDefault();
+        const data = { id: id }
+
+        axios
+            .post('/delete', data)
+            .then((res) => {
+                props.setTodos(res.data)
+            }).catch(error => {
+                console.log(error)
+            })
     }
 
+
+    //Todo一覧を表示する
     return props.todos.map(todo => {
         return (
             <TableRow key={todo.id}>
                 <TableCell>{todo.id}</TableCell>
                 <TableCell>{todo.title}</TableCell>
                 <TableCell>
-                    <Button color="secondary" onClick={() => handleClick(todo.id)}>削除</Button>
+                    <Button color="secondary" onClick={() => handleClick(todo.id, props.setTodos)}>削除</Button>
                 </TableCell>
             </TableRow>
         )
@@ -32,6 +44,7 @@ function TodoApp() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title }
+        console.log(data);
         axios
             .post('/add', data)
             .then((res) => {
@@ -58,7 +71,7 @@ function TodoApp() {
                 <div className="form-group">
                     <label className="mr-2 border border-primary">新規Todo</label>
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
-                    <Button color="primary">新規作成</Button>
+                    <Button color="primary" type="submit">新規作成</Button>
                 </div>
             </form>
             <Table className="table mt-5">
@@ -70,7 +83,7 @@ function TodoApp() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <RenderRows todos={todos}/>
+                    <RenderRows todos={todos} setTodos={setTodos} />
                 </TableBody>
             </Table>
         </>

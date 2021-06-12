@@ -20,3 +20,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/add', [App\Http\Controllers\Api\TodoController::class, 'create'])->name('add');
+Route::post('/delete', [App\Http\Controllers\Api\TodoController::class, 'delete'])->name('delete');

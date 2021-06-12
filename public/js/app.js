@@ -8018,9 +8018,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function RenderRows(props) {
+  //削除ボタンをクリックしたときに働く関数
   var handleClick = function handleClick(id) {
-    console.log(id);
-  };
+    event.preventDefault();
+    var data = {
+      id: id
+    };
+    axios.post('/delete', data).then(function (res) {
+      props.setTodos(res.data);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }; //Todo一覧を表示する
+
 
   return props.todos.map(function (todo) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__.default, {
@@ -8032,7 +8042,7 @@ function RenderRows(props) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
           color: "secondary",
           onClick: function onClick() {
-            return handleClick(todo.id);
+            return handleClick(todo.id, props.setTodos);
           },
           children: "\u524A\u9664"
         })
@@ -8061,6 +8071,7 @@ function TodoApp() {
     var data = {
       title: title
     };
+    console.log(data);
     axios.post('/add', data).then(function (res) {
       setTodos(res.data);
     })["catch"](function (error) {
@@ -8091,6 +8102,7 @@ function TodoApp() {
           onChange: handleChange
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
           color: "primary",
+          type: "submit",
           children: "\u65B0\u898F\u4F5C\u6210"
         })]
       })
@@ -8106,7 +8118,8 @@ function TodoApp() {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(RenderRows, {
-          todos: todos
+          todos: todos,
+          setTodos: setTodos
         })
       })]
     })]
