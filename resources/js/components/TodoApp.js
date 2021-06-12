@@ -44,11 +44,11 @@ function TodoApp() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title }
-        console.log(data);
         axios
             .post('/add', data)
             .then((res) => {
                 setTodos(res.data)
+                setTitle("");
             }).catch(error => {
                 console.log(error)
             })
@@ -71,7 +71,7 @@ function TodoApp() {
                 <div className="form-group">
                     <label className="mr-2 border border-primary">新規Todo</label>
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
-                    <Button color="primary" type="submit">新規作成</Button>
+                    <Button color="primary" type="submit" disabled={title === ""}>新規作成</Button>
                 </div>
             </form>
             <Table className="table mt-5">

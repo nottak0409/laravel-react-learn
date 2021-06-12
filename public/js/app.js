@@ -8071,9 +8071,9 @@ function TodoApp() {
     var data = {
       title: title
     };
-    console.log(data);
     axios.post('/add', data).then(function (res) {
       setTodos(res.data);
+      setTitle("");
     })["catch"](function (error) {
       console.log(error);
     });
@@ -8103,6 +8103,7 @@ function TodoApp() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_5__.default, {
           color: "primary",
           type: "submit",
+          disabled: title === "",
           children: "\u65B0\u898F\u4F5C\u6210"
         })]
       })
