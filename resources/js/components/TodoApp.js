@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
-import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 
 function RenderRows(props) {
     return props.todos.map(todo => {
@@ -9,7 +9,7 @@ function RenderRows(props) {
                 <TableCell>{todo.id}</TableCell>
                 <TableCell>{todo.title}</TableCell>
                 <TableCell>
-                    <button></button>
+                    <Button color="secondary">削除</Button>
                 </TableCell>
             </TableRow>
         )
@@ -47,13 +47,14 @@ function TodoApp() {
                 console.log(error)
             })
     }, []);
+
     return (
         <>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label className="mr-2 border border-primary">新規Todo</label>
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
-                    <button className="btn btn-primary">新規作成</button>
+                    <Button color="primary">新規作成</Button>
                 </div>
             </form>
             <Table className="table mt-5">
