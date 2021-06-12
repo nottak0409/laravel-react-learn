@@ -10,14 +10,12 @@ function Example() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={TodoApp}></Route>
-                    <Route path="/detail/:id" component={Detail}></Route>
+                    <Route exact path="/detail/:id" component={Detail}></Route>
                 </Switch>
             </Router>
         </div>
     );
 }
-
-export default Example;
 
 if (document.getElementById('example')) {
     ReactDOM.render(<Example />, document.getElementById('example'));

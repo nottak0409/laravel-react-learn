@@ -26,11 +26,9 @@ function RenderRows(props) {
             <TableRow key={todo.id}>
                 <TableCell>{todo.id}</TableCell>
                 <TableCell>
-                <Router>
                     <Link to={'/detail/' + todo.id}>
                         {todo.title}
                     </Link>
-                </Router>
                 </TableCell>
                 <TableCell>
                     <Button color="secondary" onClick={() => handleClick(todo.id, props.setTodos)}>削除</Button>
