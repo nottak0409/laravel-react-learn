@@ -9215,8 +9215,8 @@ function TodoApp() {
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10),
       _useState8 = _slicedToArray(_useState7, 2),
-      parPage = _useState8[0],
-      setParPage = _useState8[1]; //タイトルの入力内容保存
+      parpage = _useState8[0],
+      setParpage = _useState8[1]; //タイトルの入力内容保存
 
 
   var handleChange = function handleChange(event) {
@@ -9247,9 +9247,7 @@ function TodoApp() {
   }, []);
 
   var handleClickPagination = function handleClickPagination(offset) {
-    setOffset({
-      offset: offset
-    });
+    setOffset(offset);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
@@ -9285,12 +9283,12 @@ function TodoApp() {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RenderRows, {
-          todos: todos,
+          todos: todos.slice(offset, offset + parpage),
           setTodos: setTodos
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)((material_ui_flat_pagination__WEBPACK_IMPORTED_MODULE_2___default()), {
-      limit: parPage,
+      limit: parpage,
       offset: offset,
       total: todos.length,
       onClick: function onClick(e, offset) {

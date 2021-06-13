@@ -44,7 +44,7 @@ function TodoApp() {
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState("");
     const [offset, setOffset] = useState(0);
-    const [parPage, setParPage] = useState(10);
+    const [parpage, setParpage] = useState(10);
 
     //タイトルの入力内容保存
     const handleChange = (event) => {
@@ -78,7 +78,7 @@ function TodoApp() {
     }, []);
 
     const handleClickPagination = (offset) => {
-        setOffset({ offset })
+        setOffset(offset);
     }
 
     return (
@@ -99,11 +99,11 @@ function TodoApp() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <RenderRows todos={todos} setTodos={setTodos} />
+                    <RenderRows todos={todos.slice(offset, offset + parpage)} setTodos={setTodos} />
                 </TableBody>
             </Table>
             <Pagination
-                limit={parPage}
+                limit={parpage}
                 offset={offset}
                 total={todos.length}
                 onClick={(e, offset) => handleClickPagination(offset)}
