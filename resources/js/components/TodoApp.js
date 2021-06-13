@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Pagination from "material-ui-flat-pagination";
 import Detail from "./Detail";
 
 function RenderRows(props) {
@@ -42,11 +43,15 @@ function TodoApp() {
 
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState("");
+    const [offset, setOffset] = useState(0);
+    const [parPage, setParPage] = useState(10);
 
+    //タイトルの入力内容保存
     const handleChange = (event) => {
         setTitle(event.target.value)
     }
 
+    //新規作成ボタンを押したときの挙動
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title }
@@ -60,6 +65,7 @@ function TodoApp() {
             })
     }
 
+    //ページレンダリング時の処理
     useEffect(() => {
         axios
             .get('/api/get')
@@ -70,6 +76,10 @@ function TodoApp() {
                 console.log(error)
             })
     }, []);
+
+    const handleClickPagination = (offset) => {
+        setOffset({ offset })
+    }
 
     return (
         <>
@@ -92,6 +102,12 @@ function TodoApp() {
                     <RenderRows todos={todos} setTodos={setTodos} />
                 </TableBody>
             </Table>
+            <Pagination
+                limit={parPage}
+                offset={offset}
+                total={todos.length}
+                onClick={(e, offset) => handleClickPagination(offset)}
+            />
         </>
     );
 }
