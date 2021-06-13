@@ -44,7 +44,7 @@ function TodoApp() {
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState("");
     const [offset, setOffset] = useState(0);
-    const [parpage, setParpage] = useState(10);
+    const [parpage, setParpage] = useState(8);
 
     //タイトルの入力内容保存
     const handleChange = (event) => {

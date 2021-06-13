@@ -9216,7 +9216,7 @@ function TodoApp() {
       offset = _useState6[0],
       setOffset = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(8),
       _useState8 = _slicedToArray(_useState7, 2),
       parpage = _useState8[0],
       setParpage = _useState8[1]; //タイトルの入力内容保存
