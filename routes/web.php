@@ -11,18 +11,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'web'], function() {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '.*');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-})->where('any', '.*');
-
-Route::fallback(function() {
-    return redirect(route('home')); 
+    Route::fallback(function() {
+        return redirect(route('home'));
+    });
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/show', [App\Http\Controllers\Api\TodoController::class, 'show'])->name('show');
 Route::post('/add', [App\Http\Controllers\Api\TodoController::class, 'create'])->name('add');
 Route::post('/edit', [App\Http\Controllers\Api\TodoController::class, 'edit'])->name('edit');
