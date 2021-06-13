@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
     //新規作成のメソッド
     public function create(Request $request) {
+        // 現在認証しているユーザーを取得
+        $user_id = Auth::user()->id;
+
         $todo = new Todo;
         $todo->title = $request->title;
+        $todo->user_id = $user_id;
         $result = $todo->save();
         $todo = $todo::all();
         return $todo;
@@ -34,7 +39,7 @@ class TodoController extends Controller
     //詳細画面のメソッド
     public function show(Request $request) {
         $id = $request->id;
-        $todo = Todo::find($id);
+        $todo = Todo::where('id', $id)->where('user_id', $user_id)->get();
         return $todo;
     }
 

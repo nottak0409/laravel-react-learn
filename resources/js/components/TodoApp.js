@@ -68,7 +68,7 @@ function TodoApp() {
     //ページレンダリング時の処理
     useEffect(() => {
         axios
-            .get('/api/get')
+            .get('/get')
             .then((res) => {
                 setTodos(res.data);
             })

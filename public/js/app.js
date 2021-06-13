@@ -9242,7 +9242,7 @@ function TodoApp() {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get('/api/get').then(function (res) {
+    axios.get('/get').then(function (res) {
       setTodos(res.data);
     })["catch"](function (error) {
       console.log(error);
