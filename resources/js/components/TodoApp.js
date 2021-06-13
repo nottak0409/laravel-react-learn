@@ -27,7 +27,7 @@ function RenderRows(props) {
             <TableRow key={todo.id}>
                 <TableCell>{todo.id}</TableCell>
                 <TableCell>
-                    <Link to={'/detail/' + todo.id}>
+                    <Link to={'/detail/' + todo.id} style={{ color: '#377abd' }}>
                         {todo.title}
                     </Link>
                 </TableCell>
