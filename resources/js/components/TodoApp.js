@@ -42,28 +42,8 @@ function RenderRows(props) {
 function TodoApp() {
 
     const [todos, setTodos] = useState([]);
-    const [title, setTitle] = useState("");
     const [offset, setOffset] = useState(0);
     const [parpage, setParpage] = useState(8);
-
-    //タイトルの入力内容保存
-    const handleChange = (event) => {
-        setTitle(event.target.value)
-    }
-
-    //新規作成ボタンを押したときの挙動
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = { title: title }
-        axios
-            .post('/add', data)
-            .then((res) => {
-                setTodos(res.data)
-                setTitle("");
-            }).catch(error => {
-                console.log(error)
-            })
-    }
 
     //ページレンダリング時の処理
     useEffect(() => {
@@ -83,13 +63,11 @@ function TodoApp() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label className="mr-2 border border-primary">新規Todo</label>
-                    <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
-                    <Button color="primary" type="submit" disabled={title === ""}>新規作成</Button>
-                </div>
-            </form>
+            <nav>
+                <Link to='/'>Home</Link>
+                <Link to='/new' className="ml-2">新規作成</Link>
+            </nav>
+
             <Table className="table mt-5">
                 <TableHead>
                     <TableRow>

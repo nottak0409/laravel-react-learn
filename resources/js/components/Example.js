@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Detail from './Detail.js';
 import TodoApp from './TodoApp.js';
+import New from './New.js';
 
 function Example() {
     return (
@@ -11,6 +12,7 @@ function Example() {
                 <Switch>
                     <Route exact path="/" component={TodoApp}></Route>
                     <Route exact path="/detail/:id" component={Detail}></Route>
+                    <Route exact path="/new" component={New}></Route>
                 </Switch>
             </Router>
         </div>
