@@ -17,6 +17,7 @@ class TodoController extends Controller
         $todo = new Todo;
         $todo->title = $request->title;
         $todo->user_id = $user_id;
+        $todo->content = $request->content;
         $result = $todo->save();
         $todo = $todo::all();
         return $todo;
@@ -38,8 +39,11 @@ class TodoController extends Controller
 
     //詳細画面のメソッド
     public function show(Request $request) {
+        // 現在認証しているユーザーを取得
+        $user_id = Auth::user()->id;
+
         $id = $request->id;
-        $todo = Todo::where('id', $id)->where('user_id', $user_id)->get();
+        $todo = Todo::where('id', $id)->where('user_id', $user_id)->first();
         return $todo;
     }
 

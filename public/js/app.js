@@ -8997,6 +8997,7 @@ function Detail() {
       id: id
     };
     axios.post('/show', show_id).then(function (res) {
+      console.log(res);
       setTodo(res.data);
       setTitle(res.data.title);
     })["catch"](function (error) {
@@ -9163,18 +9164,28 @@ function New() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
       title = _useState2[0],
-      setTitle = _useState2[1]; //タイトルの入力内容保存
+      setTitle = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      content = _useState4[0],
+      setContent = _useState4[1]; //タイトルの入力内容保存
 
 
   var handleChange = function handleChange(event) {
-    setTitle(event.target.value);
+    if (event.target.name === "title") {
+      setTitle(event.target.value);
+    } else if (event.target.name === "content") {
+      setContent(event.target.value);
+    }
   }; //新規作成ボタンを押したときの挙動
 
 
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     var data = {
-      title: title
+      title: title,
+      content: content
     };
     axios.post('/add', data).then(function (res) {
       history.push('/');
@@ -9188,26 +9199,40 @@ function New() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       onSubmit: handleSubmit,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "form-group",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-          className: "mr-2 border border-primary",
-          children: "\u65B0\u898FTodo"
+          className: "mr-2\u3000border border-primary",
+          children: "\u30BF\u30A4\u30C8\u30EB"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "text",
           className: "form-control mr-2",
           name: "title",
           value: title,
           onChange: handleChange
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "form-group",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          className: "mr-2\u3000border border-primary",
+          children: "\u5185\u5BB9"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+          className: "form-control",
+          name: "content",
+          onChange: handleChange,
+          value: content
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
           color: "primary",
           type: "submit",
-          disabled: title === "",
+          disabled: title === "" || content === "",
           children: "\u65B0\u898F\u4F5C\u6210"
-        })]
-      })
+        })
+      })]
     })
   });
 }

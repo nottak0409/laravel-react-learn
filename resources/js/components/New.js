@@ -8,16 +8,21 @@ function New() {
 
     const history = useHistory();
     const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
     //タイトルの入力内容保存
     const handleChange = (event) => {
-        setTitle(event.target.value)
+        if(event.target.name === "title") {
+            setTitle(event.target.value);
+        } else if(event.target.name === "content") {
+            setContent(event.target.value);
+        }
     }
 
     //新規作成ボタンを押したときの挙動
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = { title: title }
+        const data = { title: title, content: content }
         axios
             .post('/add', data)
             .then((res) => {
@@ -35,9 +40,15 @@ function New() {
         <>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label className="mr-2 border border-primary">新規Todo</label>
+                    <label className="mr-2　border border-primary">タイトル</label>
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
-                    <Button color="primary" type="submit" disabled={title === ""}>新規作成</Button>
+                </div>
+                <div className="form-group">
+                    <label className="mr-2　border border-primary">内容</label>
+                    <textarea className="form-control" name="content" onChange={handleChange} value={content}></textarea>
+                </div>
+                <div className="form-group">
+                    <Button color="primary" type="submit" disabled={title === "" || content === ""}>新規作成</Button>
                 </div>
             </form>
         </>

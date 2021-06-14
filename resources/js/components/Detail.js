@@ -48,6 +48,7 @@ function Detail() {
         axios
             .post('/show', show_id)
             .then((res) => {
+                console.log(res);
                 setTodo(res.data);
                 setTitle(res.data.title);
             })
