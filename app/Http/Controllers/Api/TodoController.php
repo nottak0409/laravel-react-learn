@@ -51,7 +51,8 @@ class TodoController extends Controller
     public function edit(Request $request) {
         $id = $request->id;
         $title = $request->title;
-        $todo = Todo::where('id', $id)->update(['title' => $title]);
+        $content = $request->content;
+        $todo = Todo::where('id', $id)->update(['title' => $title, 'content' => $content]);
         $todo = Todo::find($id);
         return $todo;
     }

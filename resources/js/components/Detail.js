@@ -9,10 +9,15 @@ function Detail() {
     const id = useParams().id;
     const [todo, setTodo] = useState([]);
     const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
     //inputのタイトルを変更
     const handleChange = (event) => {
-        setTitle(event.target.value)
+        if(event.target.name === "title") {
+            setTitle(event.target.value);
+        } else if(event.target.name === "content") {
+            setContent(event.target.value);
+        }
     }
 
     //削除ボタンをクリックしたときに働く関数
@@ -32,7 +37,7 @@ function Detail() {
     //編集時の処理
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = { title: title, id: id }
+        const data = { title: title, id: id, content: content }
         axios
             .post('/edit', data)
             .then((res) => {
@@ -50,6 +55,7 @@ function Detail() {
             .then((res) => {
                 console.log(res);
                 setTodo(res.data);
+                setContent(res.data.content);
                 setTitle(res.data.title);
             })
             .catch(error => {
@@ -64,7 +70,13 @@ function Detail() {
                     <label className="mr-2 border border-primary">Todo編集</label>
                     <input type="hidden" name="id" value="{id}" />
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
-                    <Button color="primary" type="submit" disabled={title === ""}>編集</Button>
+                </div>
+                <div className="form-group">
+                    <label className="mr-2　border border-primary">内容</label>
+                    <textarea className="form-control" name="content" onChange={handleChange} value={content}></textarea>
+                </div>
+                <div className="form-group">
+                    <Button color="primary" type="submit" disabled={title === "" || content === ""}>編集</Button>
                 </div>
             </form>
             <Link to="/">戻る</Link>
@@ -73,6 +85,7 @@ function Detail() {
                     <TableRow>
                         <TableCell>ID</TableCell>
                         <TableCell>タイトル</TableCell>
+                        <TableCell>内容</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
@@ -80,6 +93,7 @@ function Detail() {
                     <TableRow key={todo.id}>
                         <TableCell>{todo.id}</TableCell>
                         <TableCell>{todo.title}</TableCell>
+                        <TableCell>{todo.content}</TableCell>
                         <TableCell>
                             <Button color="secondary" onClick={() => handleClick(todo.id)}>削除</Button>
                         </TableCell>

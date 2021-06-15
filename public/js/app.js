@@ -8957,11 +8957,20 @@ function Detail() {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       title = _useState4[0],
-      setTitle = _useState4[1]; //inputのタイトルを変更
+      setTitle = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      content = _useState6[0],
+      setContent = _useState6[1]; //inputのタイトルを変更
 
 
   var handleChange = function handleChange(event) {
-    setTitle(event.target.value);
+    if (event.target.name === "title") {
+      setTitle(event.target.value);
+    } else if (event.target.name === "content") {
+      setContent(event.target.value);
+    }
   }; //削除ボタンをクリックしたときに働く関数
 
 
@@ -8982,7 +8991,8 @@ function Detail() {
     event.preventDefault();
     var data = {
       title: title,
-      id: id
+      id: id,
+      content: content
     };
     axios.post('/edit', data).then(function (res) {
       setTodo(res.data);
@@ -8999,15 +9009,16 @@ function Detail() {
     axios.post('/show', show_id).then(function (res) {
       console.log(res);
       setTodo(res.data);
+      setContent(res.data.content);
       setTitle(res.data.title);
     })["catch"](function (error) {
       console.log(error);
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       onSubmit: handleSubmit,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "form-group",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
           className: "mr-2 border border-primary",
@@ -9022,13 +9033,27 @@ function Detail() {
           name: "title",
           value: title,
           onChange: handleChange
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "form-group",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          className: "mr-2\u3000border border-primary",
+          children: "\u5185\u5BB9"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+          className: "form-control",
+          name: "content",
+          onChange: handleChange,
+          value: content
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
           color: "primary",
           type: "submit",
-          disabled: title === "",
+          disabled: title === "" || content === "",
           children: "\u7DE8\u96C6"
-        })]
-      })
+        })
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
       to: "/",
       children: "\u623B\u308B"
@@ -9040,6 +9065,8 @@ function Detail() {
             children: "ID"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
             children: "\u30BF\u30A4\u30C8\u30EB"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+            children: "\u5185\u5BB9"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {})]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -9048,6 +9075,8 @@ function Detail() {
             children: todo.id
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
             children: todo.title
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
+            children: todo.content
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__.default, {
               color: "secondary",
