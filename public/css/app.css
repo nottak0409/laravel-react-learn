@@ -802,10 +802,6 @@ pre code {
   margin-left: 91.6666666667%;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
 @media (min-width: 576px) {
   .col-sm {
     flex-basis: 0;
@@ -1658,6 +1654,7 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
+  /*vertical-align: top;*/
   border-top: 1px solid #dee2e6;
 }
 .table thead th {
