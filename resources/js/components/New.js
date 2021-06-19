@@ -38,6 +38,7 @@ function New() {
 
     return (
         <>
+            <Link to="/">戻る</Link>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label className="mr-2　border border-primary">タイトル</label>
