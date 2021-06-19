@@ -67,7 +67,7 @@ function Detail() {
         <>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label className="mr-2 border border-primary">Todo編集</label>
+                    <label className="mr-2">Todo編集</label>
                     <input type="hidden" name="id" value="{id}" />
                     <input type="text" className="form-control mr-2" name="title" value={title} onChange={handleChange} />
                 </div>
