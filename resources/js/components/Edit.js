@@ -20,20 +20,6 @@ function Edit() {
         }
     }
 
-    //削除ボタンをクリックしたときに働く関数
-    const handleClick = (id) => {
-        event.preventDefault();
-        const data = { id: id }
-
-        axios
-            .post('/delete', data)
-            .then((res) => {
-                history.push('/edit/' + id);
-            }).catch(error => {
-                console.log(error)
-            })
-    }
-
     //編集時の処理
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,6 +29,7 @@ function Edit() {
             .then((res) => {
                 setTodo(res.data)
                 setTitle(res.data.title);
+                history.push('/detail/' + id);
             }).catch(error => {
                 console.log(error)
             })

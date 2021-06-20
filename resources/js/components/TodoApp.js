@@ -65,7 +65,7 @@ function TodoApp() {
         <>
             <nav>
                 <Link to='/'>Home</Link>
-                <Link to='/new' className="ml-2">新規作成</Link>
+                <Link to='/new' className="ml-2" style={{ color: '#377abd' }}>新規作成</Link>
             </nav>
 
             <Table className="table mt-5">

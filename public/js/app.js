@@ -9106,19 +9106,6 @@ function Edit() {
     } else if (event.target.name === "content") {
       setContent(event.target.value);
     }
-  }; //削除ボタンをクリックしたときに働く関数
-
-
-  var handleClick = function handleClick(id) {
-    event.preventDefault();
-    var data = {
-      id: id
-    };
-    axios.post('/delete', data).then(function (res) {
-      history.push('/edit/' + id);
-    })["catch"](function (error) {
-      console.log(error);
-    });
   }; //編集時の処理
 
 
@@ -9132,6 +9119,7 @@ function Edit() {
     axios.post('/edit', data).then(function (res) {
       setTodo(res.data);
       setTitle(res.data.title);
+      history.push('/detail/' + id);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -9517,6 +9505,9 @@ function TodoApp() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
         to: "/new",
         className: "ml-2",
+        style: {
+          color: '#377abd'
+        },
         children: "\u65B0\u898F\u4F5C\u6210"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
