@@ -29,8 +29,8 @@
                     @auth
                         <form action="{{ route('logout') }}" method="post" id="logout">
                             {{ csrf_field() }}
-                            <a href="{{ route('home') }}" class="text-sm text-gray-700 underline">Home</a>
-                            <button class="text-sm logout-button text-gray-700 underline pointer" type="submit" form="logout">logout</button>
+                            <a href="{{ route('home') }}" class="text-sm text-gray-700 underline">ホーム</a>
+                            <button class="text-sm logout-button text-gray-700 underline pointer" type="submit" form="logout">ログアウト</button>
                         </form>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
