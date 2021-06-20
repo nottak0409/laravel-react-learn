@@ -8981,7 +8981,12 @@ function Detail(props) {
       },
       children: "\u623B\u308B"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-      to: '/edit/' + id,
+      to: {
+        pathname: "/edit/".concat(id),
+        state: {
+          todo: todo
+        }
+      },
       className: "ml-2",
       style: {
         color: '#377abd'
@@ -9064,21 +9069,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Edit() {
+function Edit(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
   var id = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().id;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.location.state.todo),
       _useState2 = _slicedToArray(_useState, 2),
       todo = _useState2[0],
       setTodo = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(todo.title),
       _useState4 = _slicedToArray(_useState3, 2),
       title = _useState4[0],
       setTitle = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(todo.content),
       _useState6 = _slicedToArray(_useState5, 2),
       content = _useState6[0],
       setContent = _useState6[1]; //inputのタイトルを変更
@@ -9101,8 +9106,7 @@ function Edit() {
       content: content
     };
     axios.post('/edit', data).then(function (res) {
-      setTodo(res.data);
-      setTitle(res.data.title);
+      var todo = res.data;
       history.push({
         pathname: "/detail/".concat(id),
         state: {
@@ -9114,18 +9118,6 @@ function Edit() {
     });
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var show_id = {
-      id: id
-    };
-    axios.post('/show', show_id).then(function (res) {
-      setTodo(res.data);
-      setContent(res.data.content);
-      setTitle(res.data.title);
-    })["catch"](function (error) {
-      console.log(error);
-    });
-  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
       onSubmit: handleSubmit,

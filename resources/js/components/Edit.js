@@ -2,14 +2,14 @@ import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 
-function Edit() {
+function Edit(props) {
     const history = useHistory();
     const id = useParams().id;
-    const [todo, setTodo] = useState([]);
-    const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
+    const [todo, setTodo] = useState(props.location.state.todo);
+    const [title, setTitle] = useState(todo.title);
+    const [content, setContent] = useState(todo.content);
 
     //inputのタイトルを変更
     const handleChange = (event) => {
@@ -27,27 +27,12 @@ function Edit() {
         axios
             .post('/edit', data)
             .then((res) => {
-                setTodo(res.data)
-                setTitle(res.data.title);
+                const todo = res.data;
                 history.push({ pathname: `/detail/${id}`, state: { todo }});
             }).catch(error => {
                 console.log(error)
             })
     }
-
-    useEffect(() => {
-        const show_id = { id: id }
-        axios
-            .post('/show', show_id)
-            .then((res) => {
-                setTodo(res.data);
-                setContent(res.data.content);
-                setTitle(res.data.title);
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }, []);
 
     return (
         <>
