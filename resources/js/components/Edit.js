@@ -29,7 +29,7 @@ function Edit() {
             .then((res) => {
                 setTodo(res.data)
                 setTitle(res.data.title);
-                history.push('/detail/' + id);
+                history.push({ pathname: `/detail/${id}`, state: { todo }});
             }).catch(error => {
                 console.log(error)
             })
@@ -65,7 +65,7 @@ function Edit() {
                     <Button color="primary" type="submit" disabled={title === "" || content === ""}>編集</Button>
                 </div>
             </form>
-            <Link to={'/detail/' + id} className="ml-2" style={{ color: '#377abd' }}>戻る</Link>
+            <Link to={{ pathname: `/detail/${id}`, state: { todo } }} style={{ color: '#377abd' }}>戻る</Link>
             <Link to='/' className="ml-2" style={{ color: '#377abd' }}>ホーム</Link>
         </>
     );

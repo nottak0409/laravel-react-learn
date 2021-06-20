@@ -8945,25 +8945,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Detail() {
+function Detail(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
   var id = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)().id;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
-      todo = _useState2[0],
-      setTodo = _useState2[1];
+      title = _useState2[0],
+      setTitle = _useState2[1];
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      title = _useState4[0],
-      setTitle = _useState4[1];
+      content = _useState4[0],
+      setContent = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-      _useState6 = _slicedToArray(_useState5, 2),
-      content = _useState6[0],
-      setContent = _useState6[1]; //削除ボタンをクリックしたときに働く関数
-
+  var todo = props.location.state.todo; //削除ボタンをクリックしたときに働く関数
 
   var handleClick = function handleClick(id) {
     event.preventDefault();
@@ -8977,18 +8973,6 @@ function Detail() {
     });
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var show_id = {
-      id: id
-    };
-    axios.post('/show', show_id).then(function (res) {
-      setTodo(res.data);
-      setContent(res.data.content);
-      setTitle(res.data.title);
-    })["catch"](function (error) {
-      console.log(error);
-    });
-  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
       to: "/",
@@ -9119,7 +9103,12 @@ function Edit() {
     axios.post('/edit', data).then(function (res) {
       setTodo(res.data);
       setTitle(res.data.title);
-      history.push('/detail/' + id);
+      history.push({
+        pathname: "/detail/".concat(id),
+        state: {
+          todo: todo
+        }
+      });
     })["catch"](function (error) {
       console.log(error);
     });
@@ -9177,8 +9166,12 @@ function Edit() {
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-      to: '/detail/' + id,
-      className: "ml-2",
+      to: {
+        pathname: "/detail/".concat(id),
+        state: {
+          todo: todo
+        }
+      },
       style: {
         color: '#377abd'
       },
@@ -9449,7 +9442,12 @@ function RenderRows(props) {
         children: todo.id
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__.default, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-          to: '/detail/' + todo.id,
+          to: {
+            pathname: "detail/".concat(todo.id),
+            state: {
+              todo: todo
+            }
+          },
           style: {
             color: '#377abd'
           },

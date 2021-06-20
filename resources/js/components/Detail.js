@@ -2,14 +2,14 @@ import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 
-function Detail() {
+function Detail(props) {
     const history = useHistory();
     const id = useParams().id;
-    const [todo, setTodo] = useState([]);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const { todo } = props.location.state;
 
     //削除ボタンをクリックしたときに働く関数
     const handleClick = (id) => {
@@ -24,21 +24,6 @@ function Detail() {
                 console.log(error)
             })
     }
-
-    useEffect(() => {
-        const show_id = { id: id }
-        axios
-            .post('/show', show_id)
-            .then((res) => {
-                setTodo(res.data);
-                setContent(res.data.content);
-                setTitle(res.data.title);
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }, []);
-
     return (
         <>
             <Link to="/" style={{ color: '#377abd' }}>戻る</Link>
