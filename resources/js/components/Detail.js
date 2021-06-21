@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
+import DateFormat from "./DateFormat";
 
 function Detail(props) {
     const history = useHistory();
@@ -34,6 +35,8 @@ function Detail(props) {
                         <TableCell>ID</TableCell>
                         <TableCell>タイトル</TableCell>
                         <TableCell>内容</TableCell>
+                        <TableCell>作成日</TableCell>
+                        <TableCell>更新日</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
@@ -42,6 +45,8 @@ function Detail(props) {
                         <TableCell>{todo.id}</TableCell>
                         <TableCell>{todo.title}</TableCell>
                         <TableCell>{todo.content}</TableCell>
+                        <TableCell>{DateFormat(todo.created_at)}</TableCell>
+                        <TableCell>{DateFormat(todo.updated_at)}</TableCell>
                         <TableCell>
                             <Button color="secondary" onClick={() => handleClick(todo.id)}>削除</Button>
                         </TableCell>

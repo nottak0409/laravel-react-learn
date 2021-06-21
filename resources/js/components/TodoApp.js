@@ -4,6 +4,7 @@ import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mater
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pagination from "material-ui-flat-pagination";
 import Detail from "./Detail";
+import DateFormat from "./DateFormat";
 
 function RenderRows(props) {
     //削除ボタンをクリックしたときに働く関数
@@ -30,6 +31,12 @@ function RenderRows(props) {
                     <Link to={{ pathname: `detail/${todo.id}`, state: { todo } }} style={{ color: '#377abd' }}>
                         {todo.title}
                     </Link>
+                </TableCell>
+                <TableCell>
+                    { DateFormat(todo.created_at) }
+                </TableCell>
+                <TableCell>
+                    { DateFormat(todo.updated_at) }
                 </TableCell>
                 <TableCell>
                     <Button color="secondary" onClick={() => handleClick(todo.id, props.setTodos)}>削除</Button>
@@ -72,6 +79,8 @@ function TodoApp() {
                     <TableRow>
                         <TableCell>ID</TableCell>
                         <TableCell>タイトル</TableCell>
+                        <TableCell>作成日</TableCell>
+                        <TableCell>更新日</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
