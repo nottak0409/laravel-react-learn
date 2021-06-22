@@ -6,3 +6,11 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.mt-10 {
+    margin-top:6rem;
+}
+
+.table td {
+  vertical-align: middle !important;
+}

@@ -38,7 +38,9 @@ function New() {
 
     return (
         <>
-            <Link to="/" style={{ color: '#377abd' }}>戻る</Link>
+            <div className="mb-3 mt-3">
+                <Link to="/" style={{ color: '#377abd' }}>戻る</Link>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label className="mr-2　border border-primary">タイトル</label>

@@ -70,7 +70,7 @@ function TodoApp() {
 
     return (
         <>
-            <nav>
+            <nav className="mt-3">
                 <Link to='/new' style={{ color: '#377abd' }}>新規作成</Link>
             </nav>
 
