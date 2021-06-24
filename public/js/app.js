@@ -9489,7 +9489,7 @@ function RenderRows(props) {
           style: {
             color: '#377abd'
           },
-          children: todo.title
+          children: todo.title.length > 20 ? todo.title.substr(0, 20) + "..." : todo.title
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__.default, {
         children: (0,_DateFormat__WEBPACK_IMPORTED_MODULE_4__.default)(todo.created_at)
