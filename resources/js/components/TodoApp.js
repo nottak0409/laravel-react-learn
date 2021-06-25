@@ -26,7 +26,6 @@ function RenderRows(props) {
     return props.todos.map(todo => {
         return (
             <TableRow key={todo.id}>
-                <TableCell>{todo.id}</TableCell>
                 <TableCell>
                     <Link to={{ pathname: `detail/${todo.id}`, state: { todo } }} style={{ color: '#377abd' }}>
                         { todo.title.length > 20 ? todo.title.substr(0, 20) + "..." : todo.title}
@@ -77,7 +76,6 @@ function TodoApp() {
             <Table className="table mt-5">
                 <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
                         <TableCell>タイトル</TableCell>
                         <TableCell>作成日</TableCell>
                         <TableCell>更新日</TableCell>

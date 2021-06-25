@@ -32,7 +32,6 @@ function Detail(props) {
             <Table className="table mt-5">
                 <TableHead>
                     <TableRow>
-                        <TableCell>ID</TableCell>
                         <TableCell>タイトル</TableCell>
                         <TableCell>内容</TableCell>
                         <TableCell>作成日</TableCell>
@@ -42,7 +41,6 @@ function Detail(props) {
                 </TableHead>
                 <TableBody>
                     <TableRow key={todo.id}>
-                        <TableCell>{todo.id}</TableCell>
                         <TableCell>{todo.title}</TableCell>
                         <TableCell>{todo.content}</TableCell>
                         <TableCell>{DateFormat(todo.created_at)}</TableCell>
