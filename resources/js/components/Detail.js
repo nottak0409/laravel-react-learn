@@ -27,8 +27,10 @@ function Detail(props) {
     }
     return (
         <>
-            <Link to="/" style={{ color: '#377abd' }}>戻る</Link>
-            <Link to={{ pathname: `/edit/${id}`, state: { todo } }} className="ml-2" style={{ color: '#377abd' }}>編集</Link>
+            <div className="mt-3">
+                <Link to="/" style={{ color: '#377abd' }}>戻る</Link>
+                <Link to={{ pathname: `/edit/${id}`, state: { todo } }} className="ml-2" style={{ color: '#377abd' }}>編集</Link>
+            </div>
             <Table className="table mt-5">
                 <TableHead>
                     <TableRow>
