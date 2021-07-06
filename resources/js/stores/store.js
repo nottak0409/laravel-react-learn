@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import events from './reducer.js';
+import events from '../reducer/index.js';
 
 const state_value = {
     todos: [],

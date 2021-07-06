@@ -2,7 +2,7 @@ import {
     CREATE_MEMOS,
     DELETE_MEMOS,
     EDIT_MEMOS
-} from './action_type.js';
+} from '../actions/types.js';
 
 const events = (state = [], action) {
     switch(action.type) {
