@@ -17,6 +17,6 @@ export const editMemos = ({ title, content }) => ({
 export const deleteMemos = id => ({
     type: DELETE_MEMOS,
     payload: {
-
+        id: id
     }
 });

@@ -7,7 +7,13 @@ import {
 const events = (state = [], action) {
     switch(action.type) {
         case CREATE_MEMOS:
+            {
+                return [...state, action.payload]
+            }
         case DELETE_MEMOS:
+            {
+                return state.filter((todo) => todo.id !== action.payload)
+            }
         case EDIT_MEMOS:
         default:
             return state
