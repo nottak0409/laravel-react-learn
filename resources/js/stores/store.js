@@ -7,4 +7,6 @@ const composedEnhancer = composeWithDevTools(
     applyMiddleware(thunkMiddleware)
 )
 
-export default createStore(events, composedEnhancer);
+const store = createStore(events, composedEnhancer);
+
+export default store;

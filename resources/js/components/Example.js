@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Detail from './Detail.js';
 import TodoApp from './TodoApp.js';
 import Edit from './Edit.js';
 import New from './New.js';
+import store from '../stores/store.js'
 
 function Example() {
     return (
@@ -22,5 +24,11 @@ function Example() {
 }
 
 if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
+    ReactDOM.render(
+        <React.StrictMode>
+            <Provider store={store}>
+                <Example />
+            </Provider>
+        </React.StrictMode>,
+    document.getElementById('example'));
 }
