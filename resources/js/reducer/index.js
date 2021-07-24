@@ -6,7 +6,7 @@ import {
 
 import { client } from '../api/client'
 
-const initialState = [];
+const initialState = []
 
 export default function events(state = initialState, action) {
     switch(action.type) {

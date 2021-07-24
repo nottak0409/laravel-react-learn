@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pagination from "material-ui-flat-pagination";
 import Detail from "./Detail";
 import DateFormat from "./DateFormat";
+import { useSelector } from 'react-redux'
 
 function RenderRows(props) {
     //削除ボタンをクリックしたときに働く関数
@@ -61,6 +62,10 @@ function TodoApp() {
                 console.log(error)
             })
     }, []);
+
+    const todosSelector = (state) => state
+    const todos_re = useSelector(todosSelector)
+    console.log(todos_re)
 
     const handleClickPagination = (offset) => {
         setOffset(offset);
