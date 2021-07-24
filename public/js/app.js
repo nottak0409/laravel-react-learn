@@ -9866,13 +9866,12 @@ function _fetchTodos() {
 
           case 2:
             response = _context.sent;
-            console.log(response);
             dispatch({
               type: _actions_types_js__WEBPACK_IMPORTED_MODULE_1__.CREATE_MEMOS,
-              payload: response.todos
+              payload: response
             });
 
-          case 5:
+          case 4:
           case "end":
             return _context.stop();
         }

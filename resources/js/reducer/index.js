@@ -26,6 +26,5 @@ export default function events(state = initialState, action) {
 
 export async function fetchTodos(dispatch, getState) {
     const response = await client.get('/get')
-    console.log(response);
-    dispatch({ type: CREATE_MEMOS, payload: response.todos})
+    dispatch({ type: CREATE_MEMOS, payload: response})
 }
