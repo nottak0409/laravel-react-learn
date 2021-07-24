@@ -4,7 +4,11 @@ import {
     EDIT_MEMOS
 } from '../actions/types.js';
 
-const events = (state = [], action) {
+import { client } from '../../api/client'
+
+const initialState = [];
+
+const events = (state = initialState, action) {
     switch(action.type) {
         case CREATE_MEMOS:
             {
@@ -18,6 +22,12 @@ const events = (state = [], action) {
         default:
             return state
     }
+}
+
+export async function fetchTodos(dispatch, getState) {
+    const response = await client.get('/get')
+    console.log(response);
+    dispatch({ type: CREATE_MEMOS, payload: response.todos})
 }
 
 export default events;

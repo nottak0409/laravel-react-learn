@@ -7,6 +7,7 @@ import TodoApp from './TodoApp.js';
 import Edit from './Edit.js';
 import New from './New.js';
 import store from '../stores/store.js'
+import { fetchTodos } '../reducer/index.js'
 
 function Example() {
     return (
@@ -22,6 +23,8 @@ function Example() {
         </div>
     );
 }
+
+store.dispatch(fetchTodos)
 
 if (document.getElementById('example')) {
     ReactDOM.render(

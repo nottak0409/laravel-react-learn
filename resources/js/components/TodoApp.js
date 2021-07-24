@@ -50,7 +50,6 @@ function TodoApp() {
     const [todos, setTodos] = useState([]);
     const [offset, setOffset] = useState(0);
     const [parpage, setParpage] = useState(8);
-
     //ページレンダリング時の処理
     useEffect(() => {
         axios
