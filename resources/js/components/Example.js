@@ -7,7 +7,7 @@ import TodoApp from './TodoApp.js';
 import Edit from './Edit.js';
 import New from './New.js';
 import store from '../stores/store.js'
-import { fetchTodos } '../reducer/index.js'
+import { fetchTodos } from '../reducer/index.js'
 
 function Example() {
     return (
