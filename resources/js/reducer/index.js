@@ -7,15 +7,14 @@ import {
 import { client } from '../api/client'
 
 const initialState = {
-    todos: []
+    todos: {}
 }
 
 export default function events(state = initialState, action) {
     switch(action.type) {
         case CREATE_MEMOS:
             {
-                console.log(...state);
-                return [...state, action.payload]
+                return {...state, todos: action.payload}
             }
         case DELETE_MEMOS:
             {
@@ -29,6 +28,5 @@ export default function events(state = initialState, action) {
 
 export async function fetchTodos(dispatch, getState) {
     const response = await client.get('/get')
-    console.log(response)
     dispatch({ type: CREATE_MEMOS, payload: response})
 }
