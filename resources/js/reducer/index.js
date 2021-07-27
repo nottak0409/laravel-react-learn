@@ -14,6 +14,7 @@ export default function events(state = initialState, action) {
     switch(action.type) {
         case CREATE_MEMOS:
             {
+                console.log(...state);
                 return [...state, action.payload]
             }
         case DELETE_MEMOS:

@@ -9751,7 +9751,6 @@ function TodoApp() {
   };
 
   var todos_re = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
-  console.log(todos_re);
 
   var handleClickPagination = function handleClickPagination(offset) {
     setOffset(offset);
@@ -9846,6 +9845,10 @@ function events() {
   switch (action.type) {
     case _actions_types_js__WEBPACK_IMPORTED_MODULE_1__.CREATE_MEMOS:
       {
+        var _console;
+
+        (_console = console).log.apply(_console, _toConsumableArray(state));
+
         return [].concat(_toConsumableArray(state), [action.payload]);
       }
 
