@@ -47,14 +47,12 @@ function RenderRows(props) {
 }
 
 function TodoApp() {
-    let todos = {}
     const [offset, setOffset] = useState(0);
     const [parpage, setParpage] = useState(8);
     //ページレンダリング時の処理
-    useEffect(() => {
-        const todosSelector = (state) => state
-        const todos = useSelector(todosSelector)
-    }, []);
+    const todosSelector = (state) => state.todos
+    const todos = useSelector(todosSelector)
+
     console.log(todos);
 
     const handleClickPagination = (offset) => {

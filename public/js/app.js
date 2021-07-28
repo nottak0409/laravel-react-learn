@@ -9723,8 +9723,6 @@ function RenderRows(props) {
 }
 
 function TodoApp() {
-  var todos = {};
-
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       offset = _useState2[0],
@@ -9736,13 +9734,11 @@ function TodoApp() {
       setParpage = _useState4[1]; //ページレンダリング時の処理
 
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var todosSelector = function todosSelector(state) {
-      return state;
-    };
+  var todosSelector = function todosSelector(state) {
+    return state.todos;
+  };
 
-    var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
-  }, []);
+  var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
   console.log(todos);
 
   var handleClickPagination = function handleClickPagination(offset) {
