@@ -9,6 +9,8 @@ import New from './New.js';
 import store from '../stores/store.js'
 import { fetchTodos } from '../reducer/index.js'
 
+store.dispatch(fetchTodos)
+
 function Example() {
     return (
         <div className="container">
@@ -23,8 +25,6 @@ function Example() {
         </div>
     );
 }
-
-store.dispatch(fetchTodos)
 
 if (document.getElementById('example')) {
     ReactDOM.render(

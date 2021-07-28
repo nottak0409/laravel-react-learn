@@ -1,7 +1,8 @@
 import {
     CREATE_MEMOS,
     DELETE_MEMOS,
-    EDIT_MEMOS
+    EDIT_MEMOS,
+    LOADED_MEMOS
 } from '../actions/types.js';
 
 import { client } from '../api/client'
@@ -21,6 +22,10 @@ export default function events(state = initialState, action) {
                 return state.filter((todo) => todo.id !== action.payload)
             }
         case EDIT_MEMOS:
+        case LOADED_MEMOS:
+            {
+                return { todos: action.payload }
+            }
         default:
             return state
     }
@@ -28,5 +33,5 @@ export default function events(state = initialState, action) {
 
 export async function fetchTodos(dispatch, getState) {
     const response = await client.get('/get')
-    dispatch({ type: CREATE_MEMOS, payload: response})
+    dispatch({ type: LOADED_MEMOS, payload: response})
 }
