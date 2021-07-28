@@ -76,7 +76,7 @@ function TodoApp() {
                 </TableHead>
                 <TableBody>
                     {Object.keys(todos).length !== 0 &&
-                        <RenderRows todos={ todos.slice(offset, offset + parpage)} setTodos={setTodos} />
+                        <RenderRows todos={ todos.slice(offset, offset + parpage)} />
                     }
                 </TableBody>
             </Table>

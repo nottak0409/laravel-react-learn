@@ -9769,8 +9769,7 @@ function TodoApp() {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
         children: Object.keys(todos).length !== 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RenderRows, {
-          todos: todos.slice(offset, offset + parpage),
-          setTodos: setTodos
+          todos: todos.slice(offset, offset + parpage)
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((material_ui_flat_pagination__WEBPACK_IMPORTED_MODULE_2___default()), {
