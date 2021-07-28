@@ -9747,7 +9747,7 @@ function TodoApp() {
   }, []);
 
   var todosSelector = function todosSelector(state) {
-    return state;
+    return state.todos;
   };
 
   var todos_re = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
