@@ -47,24 +47,15 @@ function RenderRows(props) {
 }
 
 function TodoApp() {
-
-    const [todos, setTodos] = useState([]);
+    let todos = {}
     const [offset, setOffset] = useState(0);
     const [parpage, setParpage] = useState(8);
     //ページレンダリング時の処理
     useEffect(() => {
-        axios
-            .get('/get')
-            .then((res) => {
-                setTodos(res.data);
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        const todosSelector = (state) => state
+        const todos = useSelector(todosSelector)
     }, []);
-
-    const todosSelector = (state) => state.todos
-    const todos_re = useSelector(todosSelector)
+    console.log(todos);
 
     const handleClickPagination = (offset) => {
         setOffset(offset);
@@ -86,7 +77,9 @@ function TodoApp() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <RenderRows todos={todos.slice(offset, offset + parpage)} setTodos={setTodos} />
+                    {Object.keys(todos).length !== 0 &&
+                        <RenderRows todos={ todos.slice(offset, offset + parpage)} setTodos={setTodos} />
+                    }
                 </TableBody>
             </Table>
             <Pagination

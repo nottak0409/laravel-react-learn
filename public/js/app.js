@@ -9723,35 +9723,27 @@ function RenderRows(props) {
 }
 
 function TodoApp() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var todos = {};
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
-      todos = _useState2[0],
-      setTodos = _useState2[1];
+      offset = _useState2[0],
+      setOffset = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(8),
       _useState4 = _slicedToArray(_useState3, 2),
-      offset = _useState4[0],
-      setOffset = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(8),
-      _useState6 = _slicedToArray(_useState5, 2),
-      parpage = _useState6[0],
-      setParpage = _useState6[1]; //ページレンダリング時の処理
+      parpage = _useState4[0],
+      setParpage = _useState4[1]; //ページレンダリング時の処理
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios.get('/get').then(function (res) {
-      setTodos(res.data);
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    var todosSelector = function todosSelector(state) {
+      return state;
+    };
+
+    var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
   }, []);
-
-  var todosSelector = function todosSelector(state) {
-    return state.todos;
-  };
-
-  var todos_re = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
+  console.log(todos);
 
   var handleClickPagination = function handleClickPagination(offset) {
     setOffset(offset);
@@ -9780,7 +9772,7 @@ function TodoApp() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_8__.default, {})]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RenderRows, {
+        children: Object.keys(todos).length !== 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RenderRows, {
           todos: todos.slice(offset, offset + parpage),
           setTodos: setTodos
         })
