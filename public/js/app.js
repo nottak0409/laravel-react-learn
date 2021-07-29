@@ -9898,8 +9898,8 @@ function saveNewTodo(data) {
             case 2:
               response = _context.sent;
               dispatch({
-                type: _actions_types_js__WEBPACK_IMPORTED_MODULE_1__.CREATE_MEMOS,
-                payload: response.todo
+                type: _actions_types_js__WEBPACK_IMPORTED_MODULE_1__.LOADED_MEMOS,
+                payload: response
               });
 
             case 4:
