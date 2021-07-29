@@ -35,3 +35,11 @@ export async function fetchTodos(dispatch, getState) {
     const response = await client.get('/get')
     dispatch({ type: LOADED_MEMOS, payload: response})
 }
+
+export async function saveNewTodo(data) {
+    return async function saveNewTodoThunk(dispatch, getState) {
+        const response = await client.post('/add', data)
+        console.log(response)
+        dispatch({ type: CREATE_MEMOS, payload: response.todo })
+    }
+}

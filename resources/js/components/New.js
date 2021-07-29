@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import { Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory } from 'react-router-dom';
+import { saveNewTodo } from '../reducer/index';
 
 function New() {
 
