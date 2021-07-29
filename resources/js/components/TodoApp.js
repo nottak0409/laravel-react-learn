@@ -53,8 +53,6 @@ function TodoApp() {
     const todosSelector = (state) => state.todos
     const todos = useSelector(todosSelector)
 
-    console.log(todos);
-
     const handleClickPagination = (offset) => {
         setOffset(offset);
     }

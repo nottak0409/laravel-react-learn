@@ -9739,7 +9739,6 @@ function TodoApp() {
   };
 
   var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
-  console.log(todos);
 
   var handleClickPagination = function handleClickPagination(offset) {
     setOffset(offset);
