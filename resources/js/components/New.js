@@ -4,10 +4,12 @@ import { Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory } from 'react-router-dom';
 import { saveNewTodo } from '../reducer/index';
+import { useDispatch } from 'react-redux';
 
 function New() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
@@ -24,13 +26,8 @@ function New() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title, content: content }
-        axios
-            .post('/add', data)
-            .then((res) => {
-                history.push('/');
-            }).catch(error => {
-                console.log(error)
-            })
+        dispatch(saveNewTodo(data))
+        history.push('/');
     }
 
     const handleClickPagination = (offset) => {
