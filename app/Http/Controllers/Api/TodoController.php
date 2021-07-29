@@ -19,7 +19,7 @@ class TodoController extends Controller
         $todo->user_id = $user_id;
         $todo->content = $request->content;
         $result = $todo->save();
-        $todo = $todo::all();
+        $todo = $todo::where('user_id', $user_id)->latest()->get();
         return $todo;
     }
 
