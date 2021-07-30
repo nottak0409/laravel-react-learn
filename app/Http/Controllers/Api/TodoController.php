@@ -25,6 +25,8 @@ class TodoController extends Controller
 
     //削除のメソッド
     public function delete(Request $request) {
+        // 現在認証しているユーザーを取得
+        $user_id = Auth::user()->id;
         //axiosで送られてきたdeleteするidを取得する
         $id = $request->id;
 
@@ -33,7 +35,7 @@ class TodoController extends Controller
         $todo->destroy($id);
 
         //todo一覧を取得
-        $todo = $todo::all();
+        $todo = $todo::where('user_id', $user_id)->latest()->get();
         return $todo;
     }
 

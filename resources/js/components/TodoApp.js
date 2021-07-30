@@ -5,21 +5,18 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pagination from "material-ui-flat-pagination";
 import Detail from "./Detail";
 import DateFormat from "./DateFormat";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteTodo } from '../reducer/index';
 
 function RenderRows(props) {
+
+    const dispatch = useDispatch();
+
     //削除ボタンをクリックしたときに働く関数
     const handleClick = (id) => {
         event.preventDefault();
         const data = { id: id }
-
-        axios
-            .post('/delete', data)
-            .then((res) => {
-                props.setTodos(res.data)
-            }).catch(error => {
-                console.log(error)
-            })
+        dispatch(deleteTodo(data))
     }
 
 

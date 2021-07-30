@@ -42,3 +42,10 @@ export function saveNewTodo(data) {
         dispatch({ type: LOADED_MEMOS, payload: response })
     }
 }
+
+export function deleteTodo(data) {
+    return async function deleteTodoThunk(dispatch, getState) {
+        const response = await client.post('/delete', data)
+        dispatch({ type: LOADED_MEMOS, payload: response })
+    }
+}
