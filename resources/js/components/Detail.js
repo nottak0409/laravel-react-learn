@@ -4,9 +4,12 @@ import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mater
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import DateFormat from "./DateFormat";
+import { useDispatch } from 'react-redux'
+import { deleteTodo } from '../reducer/index';
 
 function Detail(props) {
     const history = useHistory();
+    const dispatch = useDispatch();
     const id = useParams().id;
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -16,15 +19,12 @@ function Detail(props) {
     const handleClick = (id) => {
         event.preventDefault();
         const data = { id: id }
-
-        axios
-            .post('/delete', data)
-            .then((res) => {
-                history.push('/');
-            }).catch(error => {
-                console.log(error)
-            })
+        dispatch(deleteTodo(data))
+        .then(() => {
+            history.push('/');
+        });
     }
+
     return (
         <>
             <div className="mt-3">

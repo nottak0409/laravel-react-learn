@@ -27,7 +27,9 @@ function New() {
         event.preventDefault();
         const data = { title: title, content: content }
         dispatch(saveNewTodo(data))
-        history.push('/');
+        .then(() => {
+            history.push('/');
+        });
     }
 
     const handleClickPagination = (offset) => {
