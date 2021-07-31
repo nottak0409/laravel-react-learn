@@ -51,11 +51,17 @@ class TodoController extends Controller
 
     //編集時のメソッド
     public function edit(Request $request) {
+        // 現在認証しているユーザーを取得
+        $user_id = Auth::user()->id;
+
+        //axiosで送られてきたdeleteするidを取得する
         $id = $request->id;
         $title = $request->title;
         $content = $request->content;
         $todo = Todo::where('id', $id)->update(['title' => $title, 'content' => $content]);
-        $todo = Todo::find($id);
-        return $todo;
+        
+        $todos = new Todo;
+        $todos = $todos::where('user_id', $user_id)->latest()->get();
+        return $todos;
     }
 }

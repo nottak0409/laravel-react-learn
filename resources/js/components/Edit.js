@@ -3,9 +3,12 @@ import ReactDom from 'react-dom';
 import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { editTodo } from '../reducer/index';
 
 function Edit(props) {
     const history = useHistory();
+    const dispatch = useDispatch();
     const id = useParams().id;
     const [todo, setTodo] = useState(props.location.state.todo);
     const [title, setTitle] = useState(todo.title);
@@ -24,14 +27,10 @@ function Edit(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = { title: title, id: id, content: content }
-        axios
-            .post('/edit', data)
-            .then((res) => {
-                const todo = res.data;
-                history.push({ pathname: `/detail/${id}`, state: { todo }});
-            }).catch(error => {
-                console.log(error)
-            })
+        dispatch(editTodo(data))
+        .then(() => {
+            history.push({ pathname: `/detail/${id}`, state: { todo }});
+        });
     }
 
     return (
