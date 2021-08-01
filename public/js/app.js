@@ -9182,7 +9182,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Detail(props) {
+function Detail() {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
   var id = Number((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)().id);
@@ -9359,10 +9359,7 @@ function Edit(props) {
     };
     dispatch((0,_reducer_index__WEBPACK_IMPORTED_MODULE_3__.editTodo)(data)).then(function () {
       history.push({
-        pathname: "/detail/".concat(id),
-        state: {
-          todo: todo
-        }
+        pathname: "/detail/".concat(id)
       });
     });
   };
@@ -9706,10 +9703,7 @@ function RenderRows(props) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__.default, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
           to: {
-            pathname: "detail/".concat(todo.id),
-            state: {
-              todo: todo
-            }
+            pathname: "detail/".concat(todo.id)
           },
           style: {
             color: '#377abd'

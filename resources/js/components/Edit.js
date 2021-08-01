@@ -28,7 +28,7 @@ function Edit(props) {
         const data = { title: title, id: id, content: content }
         dispatch(editTodo(data))
         .then(() => {
-            history.push({ pathname: `/detail/${id}`, state: { todo }});
+            history.push({ pathname: `/detail/${id}`　});
         });
     }
 

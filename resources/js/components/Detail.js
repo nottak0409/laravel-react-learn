@@ -7,7 +7,7 @@ import DateFormat from "./DateFormat";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteTodo } from '../reducer/index';
 
-function Detail(props) {
+function Detail() {
     const history = useHistory();
     const dispatch = useDispatch();
     const id = Number(useParams().id);

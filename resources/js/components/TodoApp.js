@@ -25,7 +25,7 @@ function RenderRows(props) {
         return (
             <TableRow key={todo.id}>
                 <TableCell>
-                    <Link to={{ pathname: `detail/${todo.id}`, state: { todo } }} style={{ color: '#377abd' }}>
+                    <Link to={{ pathname: `detail/${todo.id}` }} style={{ color: '#377abd' }}>
                         { todo.title.length > 20 ? todo.title.substr(0, 20) + "..." : todo.title}
                     </Link>
                 </TableCell>
