@@ -9185,7 +9185,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Detail(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
-  var id = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)().id;
+  var id = Number((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)().id);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState2 = _slicedToArray(_useState, 2),
@@ -9197,7 +9197,11 @@ function Detail(props) {
       content = _useState4[0],
       setContent = _useState4[1];
 
-  var todo = props.location.state.todo; //削除ボタンをクリックしたときに働く関数
+  var todo = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.todos.find(function (element) {
+      return element.id === id;
+    });
+  }); //削除ボタンをクリックしたときに働く関数
 
   var handleClick = function handleClick(id) {
     event.preventDefault();
@@ -9319,7 +9323,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Edit(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
-  var id = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)().id;
+  var id = Number((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)().id);
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.location.state.todo),
       _useState2 = _slicedToArray(_useState, 2),

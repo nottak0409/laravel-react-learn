@@ -4,16 +4,16 @@ import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@mater
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import DateFormat from "./DateFormat";
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { deleteTodo } from '../reducer/index';
 
 function Detail(props) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const id = useParams().id;
+    const id = Number(useParams().id);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const { todo } = props.location.state;
+    const todo = useSelector((state) => state.todos.find(element => element.id === id ))
 
     //削除ボタンをクリックしたときに働く関数
     const handleClick = (id) => {

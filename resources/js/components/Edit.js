@@ -9,11 +9,10 @@ import { editTodo } from '../reducer/index';
 function Edit(props) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const id = useParams().id;
+    const id = Number(useParams().id);
     const [todo, setTodo] = useState(props.location.state.todo);
     const [title, setTitle] = useState(todo.title);
     const [content, setContent] = useState(todo.content);
-
     //inputのタイトルを変更
     const handleChange = (event) => {
         if(event.target.name === "title") {
