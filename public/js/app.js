@@ -9659,7 +9659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Detail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Detail */ "./resources/js/components/Detail.js");
 /* harmony import */ var _DateFormat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DateFormat */ "./resources/js/components/DateFormat.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _reducer_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reducer/index */ "./resources/js/reducer/index.js");
+/* harmony import */ var _reducer_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reducer/index.js */ "./resources/js/reducer/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -9672,6 +9672,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -9743,10 +9744,27 @@ function TodoApp() {
     return state.todos;
   };
 
-  var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
+  var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector); //const todos_selector = useSelector(todosSelector)
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      search = _useState6[0],
+      setSearch = _useState6[1]; //const [todos, setTodos] = useState()
+
 
   var handleClickPagination = function handleClickPagination(offset) {
     setOffset(offset);
+  }; //console.log(todos_selector);
+  //useEffect((todos_selector) => {
+  //    setTodos(todos_selector)
+  //}, []);
+  //タイトルの入力内容保存
+
+
+  var handleSearch = function handleSearch(event) {
+    if (event.target.name === "search") {
+      setSearch(event.target.value);
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
@@ -9759,6 +9777,17 @@ function TodoApp() {
         },
         children: "\u65B0\u898F\u4F5C\u6210"
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+        className: "mr-2\u3000border border-primary",
+        children: "\u691C\u7D22"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
+        type: "text",
+        className: "form-control mr-2",
+        name: "search",
+        value: search,
+        onChange: handleSearch
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
       className: "table mt-5",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_13__.default, {

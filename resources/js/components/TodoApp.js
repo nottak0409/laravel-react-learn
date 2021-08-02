@@ -7,6 +7,7 @@ import Detail from "./Detail";
 import DateFormat from "./DateFormat";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteTodo } from '../reducer/index';
+import { fetchTodos } from '../reducer/index.js'
 
 function RenderRows(props) {
 
@@ -49,9 +50,24 @@ function TodoApp() {
     //ページレンダリング時の処理
     const todosSelector = (state) => state.todos
     const todos = useSelector(todosSelector)
+    //const todos_selector = useSelector(todosSelector)
+    const [search, setSearch] = useState("")
+    //const [todos, setTodos] = useState()
 
     const handleClickPagination = (offset) => {
         setOffset(offset);
+    }
+
+    //console.log(todos_selector);
+    //useEffect((todos_selector) => {
+    //    setTodos(todos_selector)
+    //}, []);
+
+    //タイトルの入力内容保存
+    const handleSearch = (event) => {
+        if(event.target.name === "search") {
+            setSearch(event.target.value);
+        }
     }
 
     return (
@@ -59,6 +75,11 @@ function TodoApp() {
             <nav className="mt-3">
                 <Link to='/new' style={{ color: '#377abd' }}>新規作成</Link>
             </nav>
+
+            <div>
+                <label className="mr-2　border border-primary">検索</label>
+                <input type="text" className="form-control mr-2" name="search" value={search} onChange={handleSearch} />
+            </div>
 
             <Table className="table mt-5">
                 <TableHead>
@@ -70,7 +91,7 @@ function TodoApp() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {Object.keys(todos).length !== 0 &&
+                    { Object.keys(todos).length !== 0 &&
                         <RenderRows todos={ todos.slice(offset, offset + parpage)} />
                     }
                 </TableBody>
