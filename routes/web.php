@@ -23,6 +23,7 @@ Route::group(['middleware' => 'web'], function() {
 Auth::routes();
 
 Route::get('/get', [App\Http\Controllers\TodoController::class, 'getTodos'])->name('gettodos');
+Route::post('/search', [App\Http\Controllers\Api\TodoController::class, 'search'])->name('search');
 Route::post('/show', [App\Http\Controllers\Api\TodoController::class, 'show'])->name('show');
 Route::post('/add', [App\Http\Controllers\Api\TodoController::class, 'create'])->name('add');
 Route::post('/edit', [App\Http\Controllers\Api\TodoController::class, 'edit'])->name('edit');

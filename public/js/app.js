@@ -9659,7 +9659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Detail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Detail */ "./resources/js/components/Detail.js");
 /* harmony import */ var _DateFormat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DateFormat */ "./resources/js/components/DateFormat.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _reducer_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reducer/index.js */ "./resources/js/reducer/index.js");
+/* harmony import */ var _reducer_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../reducer/index */ "./resources/js/reducer/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -9672,7 +9672,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -9729,6 +9728,8 @@ function RenderRows(props) {
 }
 
 function TodoApp() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useDispatch)();
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       offset = _useState2[0],
@@ -9770,6 +9771,12 @@ function TodoApp() {
 
   var searchButton = function searchButton(event) {
     event.preventDefault();
+    var data = {
+      title: search
+    };
+    dispatch((0,_reducer_index__WEBPACK_IMPORTED_MODULE_6__.searchTodos)(data)); //.then(() => {
+    //    history.push({ pathname: `/`　});
+    //});
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
@@ -9792,8 +9799,9 @@ function TodoApp() {
         name: "search",
         value: search,
         onChange: handleSearch
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-        "class": "mt-2",
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_material_ui_core__WEBPACK_IMPORTED_MODULE_11__.default, {
+        color: "primary",
+        className: "mt-2",
         onClick: searchButton,
         children: "\u691C\u7D22"
       })]
@@ -9840,6 +9848,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ events),
 /* harmony export */   "fetchTodos": () => (/* binding */ fetchTodos),
+/* harmony export */   "searchTodos": () => (/* binding */ searchTodos),
 /* harmony export */   "saveNewTodo": () => (/* binding */ saveNewTodo),
 /* harmony export */   "editTodo": () => (/* binding */ editTodo),
 /* harmony export */   "deleteTodo": () => (/* binding */ deleteTodo)
@@ -9878,20 +9887,20 @@ function events() {
 
 function fetchTodos(_x, _x2) {
   return _fetchTodos.apply(this, arguments);
-} //新規登録時にデータを保存する処理
+} //todo一覧画面で検索を行った際の処理
 
 function _fetchTodos() {
-  _fetchTodos = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(dispatch, getState) {
+  _fetchTodos = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(dispatch, getState) {
     var response;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            _context4.next = 2;
+            _context5.next = 2;
             return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.get('/get');
 
           case 2:
-            response = _context4.sent;
+            response = _context5.sent;
             dispatch({
               type: _actions_types_js__WEBPACK_IMPORTED_MODULE_1__.LOADED_MEMOS,
               payload: response
@@ -9899,24 +9908,24 @@ function _fetchTodos() {
 
           case 4:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
   return _fetchTodos.apply(this, arguments);
 }
 
-function saveNewTodo(data) {
+function searchTodos(data) {
   return /*#__PURE__*/function () {
-    var _saveNewTodoThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch, getState) {
+    var _searchTodosThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch, getState) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/add', data);
+              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/search', data);
 
             case 2:
               response = _context.sent;
@@ -9933,24 +9942,24 @@ function saveNewTodo(data) {
       }, _callee);
     }));
 
-    function saveNewTodoThunk(_x3, _x4) {
-      return _saveNewTodoThunk.apply(this, arguments);
+    function searchTodosThunk(_x3, _x4) {
+      return _searchTodosThunk.apply(this, arguments);
     }
 
-    return saveNewTodoThunk;
+    return searchTodosThunk;
   }();
-} //編集時にデータを保存する処理
+} //新規登録時にデータを保存する処理
 
-function editTodo(data) {
+function saveNewTodo(data) {
   return /*#__PURE__*/function () {
-    var _editTodoThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch, getState) {
+    var _saveNewTodoThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch, getState) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/edit', data);
+              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/add', data);
 
             case 2:
               response = _context2.sent;
@@ -9967,24 +9976,24 @@ function editTodo(data) {
       }, _callee2);
     }));
 
-    function editTodoThunk(_x5, _x6) {
-      return _editTodoThunk.apply(this, arguments);
+    function saveNewTodoThunk(_x5, _x6) {
+      return _saveNewTodoThunk.apply(this, arguments);
     }
 
-    return editTodoThunk;
+    return saveNewTodoThunk;
   }();
-} //データを削除する処理
+} //編集時にデータを保存する処理
 
-function deleteTodo(data) {
+function editTodo(data) {
   return /*#__PURE__*/function () {
-    var _deleteTodoThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch, getState) {
+    var _editTodoThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch, getState) {
       var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/delete', data);
+              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/edit', data);
 
             case 2:
               response = _context3.sent;
@@ -10001,7 +10010,41 @@ function deleteTodo(data) {
       }, _callee3);
     }));
 
-    function deleteTodoThunk(_x7, _x8) {
+    function editTodoThunk(_x7, _x8) {
+      return _editTodoThunk.apply(this, arguments);
+    }
+
+    return editTodoThunk;
+  }();
+} //データを削除する処理
+
+function deleteTodo(data) {
+  return /*#__PURE__*/function () {
+    var _deleteTodoThunk = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(dispatch, getState) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return _api_client__WEBPACK_IMPORTED_MODULE_2__.client.post('/delete', data);
+
+            case 2:
+              response = _context4.sent;
+              dispatch({
+                type: _actions_types_js__WEBPACK_IMPORTED_MODULE_1__.LOADED_MEMOS,
+                payload: response
+              });
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    function deleteTodoThunk(_x9, _x10) {
       return _deleteTodoThunk.apply(this, arguments);
     }
 

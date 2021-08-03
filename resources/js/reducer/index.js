@@ -25,6 +25,14 @@ export async function fetchTodos(dispatch, getState) {
     dispatch({ type: LOADED_MEMOS, payload: response})
 }
 
+//todo一覧画面で検索を行った際の処理
+export function searchTodos(data) {
+    return async function searchTodosThunk(dispatch, getState) {
+        const response = await client.post('/search', data)
+        dispatch({ type: LOADED_MEMOS, payload: response })
+    }
+}
+
 //新規登録時にデータを保存する処理
 export function saveNewTodo(data) {
     return async function saveNewTodoThunk(dispatch, getState) {

@@ -6,8 +6,7 @@ import Pagination from "material-ui-flat-pagination";
 import Detail from "./Detail";
 import DateFormat from "./DateFormat";
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteTodo } from '../reducer/index';
-import { fetchTodos } from '../reducer/index.js'
+import { deleteTodo, fetchTodos, searchTodos } from '../reducer/index';
 
 function RenderRows(props) {
 
@@ -45,6 +44,8 @@ function RenderRows(props) {
 }
 
 function TodoApp() {
+    const dispatch = useDispatch();
+
     const [offset, setOffset] = useState(0);
     const [parpage, setParpage] = useState(8);
     //ページレンダリング時の処理
@@ -73,6 +74,11 @@ function TodoApp() {
     //検索ボタンクリック時の処理を追加
     const searchButton = (event) => {
         event.preventDefault();
+        const data = { title: search }
+        dispatch(searchTodos(data))
+        //.then(() => {
+        //    history.push({ pathname: `/`　});
+        //});
     }
 
     return (
@@ -84,7 +90,7 @@ function TodoApp() {
             <div>
                 <label className="mr-2　border border-primary">タイトル検索</label>
                 <input type="text" className="form-control mr-2" name="search" value={search} onChange={handleSearch} />
-                <button class="mt-2" onClick={searchButton}>検索</button>
+                <Button color="primary" className="mt-2" onClick={searchButton}>検索</Button>
             </div>
 
             <Table className="table mt-5">
