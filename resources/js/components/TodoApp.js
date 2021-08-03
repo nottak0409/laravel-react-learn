@@ -70,6 +70,11 @@ function TodoApp() {
         }
     }
 
+    //検索ボタンクリック時の処理を追加
+    const searchButton = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <>
             <nav className="mt-3">
@@ -77,8 +82,9 @@ function TodoApp() {
             </nav>
 
             <div>
-                <label className="mr-2　border border-primary">検索</label>
+                <label className="mr-2　border border-primary">タイトル検索</label>
                 <input type="text" className="form-control mr-2" name="search" value={search} onChange={handleSearch} />
+                <button class="mt-2" onClick={searchButton}>検索</button>
             </div>
 
             <Table className="table mt-5">

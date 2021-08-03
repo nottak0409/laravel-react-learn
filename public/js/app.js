@@ -9765,6 +9765,11 @@ function TodoApp() {
     if (event.target.name === "search") {
       setSearch(event.target.value);
     }
+  }; //検索ボタンクリック時の処理を追加
+
+
+  var searchButton = function searchButton(event) {
+    event.preventDefault();
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
@@ -9780,13 +9785,17 @@ function TodoApp() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
         className: "mr-2\u3000border border-primary",
-        children: "\u691C\u7D22"
+        children: "\u30BF\u30A4\u30C8\u30EB\u691C\u7D22"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
         type: "text",
         className: "form-control mr-2",
         name: "search",
         value: search,
         onChange: handleSearch
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        "class": "mt-2",
+        onClick: searchButton,
+        children: "\u691C\u7D22"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_material_ui_core__WEBPACK_IMPORTED_MODULE_12__.default, {
       className: "table mt-5",
