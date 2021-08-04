@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
-import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button, CircularProgress } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import DateFormat from "./DateFormat";
@@ -14,6 +14,7 @@ function Detail() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const todo = useSelector((state) => state.todos.find(element => element.id === id ))
+    const loading = useSelector((state) => state.loading)
 
     //削除ボタンをクリックしたときに働く関数
     const handleClick = (id) => {
@@ -21,12 +22,15 @@ function Detail() {
         const data = { id: id }
         dispatch(deleteTodo(data))
         .then(() => {
-            history.push('/');
+            history.push('/')
         });
     }
 
-    return (
-        <>
+    if(loading) {
+        return <CircularProgress />
+    } else {
+        return (
+            <>
             <div className="mt-3">
                 <Link to="/" style={{ color: '#377abd' }}>戻る</Link>
                 <Link to={{ pathname: `/edit/${id}`, state: { todo } }} className="ml-2" style={{ color: '#377abd' }}>編集</Link>
@@ -54,7 +58,7 @@ function Detail() {
                 </TableBody>
             </Table>
         </>
-    );
+    )}
 }
 
 export default Detail;

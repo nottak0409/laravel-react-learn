@@ -1,18 +1,24 @@
 import {
-    LOADED_MEMOS
+    LOADED_MEMOS,
+    SUCCESS_LOADING
 } from '../actions/types.js';
 
 import { client } from '../api/client'
 
 const initialState = {
-    todos: {}
+    todos: {},
+    loading: false
 }
 
 export default function events(state = initialState, action) {
     switch(action.type) {
         case LOADED_MEMOS:
             {
-                return { todos: action.payload }
+                return { todos: action.payload, loading: true }
+            }
+        case SUCCESS_LOADING:
+            {
+                return { ...state, loading: false }
             }
         default:
             return state
@@ -23,6 +29,7 @@ export default function events(state = initialState, action) {
 export async function fetchTodos(dispatch, getState) {
     const response = await client.get('/get')
     dispatch({ type: LOADED_MEMOS, payload: response})
+    dispatch({ type: SUCCESS_LOADING })
 }
 
 //todo一覧画面で検索を行った際の処理
@@ -30,6 +37,7 @@ export function searchTodos(data) {
     return async function searchTodosThunk(dispatch, getState) {
         const response = await client.post('/search', data)
         dispatch({ type: LOADED_MEMOS, payload: response })
+        dispatch({ type: SUCCESS_LOADING })
     }
 }
 
@@ -38,6 +46,7 @@ export function saveNewTodo(data) {
     return async function saveNewTodoThunk(dispatch, getState) {
         const response = await client.post('/add', data)
         dispatch({ type: LOADED_MEMOS, payload: response })
+        dispatch({ type: SUCCESS_LOADING })
     }
 }
 
@@ -46,6 +55,7 @@ export function editTodo(data) {
     return async function editTodoThunk(dispatch, getState) {
         const response = await client.post('/edit', data)
         dispatch({ type: LOADED_MEMOS, payload: response })
+        dispatch({ type: SUCCESS_LOADING })
     }
 }
 
