@@ -29,7 +29,7 @@ function Edit(props) {
         dispatch(editTodo(data))
         .then(() => {
             history.push({ pathname: `/detail/${id}`　});
-        });
+        })
     }
 
     return (

@@ -1,12 +1,13 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDom from 'react-dom';
-import { Table, TableHead, TableBody, TableRow, TableCell, Button } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Button, CircularProgress } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Pagination from "material-ui-flat-pagination";
 import Detail from "./Detail";
 import DateFormat from "./DateFormat";
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteTodo, fetchTodos, searchTodos } from '../reducer/index';
+import { SUCCESS_LOADING } from '../actions/types.js';
 
 function RenderRows(props) {
 
@@ -17,6 +18,9 @@ function RenderRows(props) {
         event.preventDefault();
         const data = { id: id }
         dispatch(deleteTodo(data))
+        .then(() => {
+            dispatch({ type: SUCCESS_LOADING })
+        })
     }
 
 
@@ -54,6 +58,7 @@ function TodoApp() {
     //const todos_selector = useSelector(todosSelector)
     const [search, setSearch] = useState("")
     //const [todos, setTodos] = useState()
+    const loading = useSelector((state) => state.loading)
 
     const handleClickPagination = (offset) => {
         setOffset(offset);
@@ -77,42 +82,47 @@ function TodoApp() {
         const data = { title: search }
         dispatch(searchTodos(data))
     }
+    if(loading) {
+        return (
+            <CircularProgress/>
+        )
+    } else {
+        return (
+            <>
+                <nav className="mt-3">
+                    <Link to='/new' style={{ color: '#377abd' }}>新規作成</Link>
+                </nav>
 
-    return (
-        <>
-            <nav className="mt-3">
-                <Link to='/new' style={{ color: '#377abd' }}>新規作成</Link>
-            </nav>
+                <div>
+                    <label className="mr-2　border border-primary">タイトル検索</label>
+                    <input type="text" className="form-control mr-2" name="search" value={search} onChange={handleSearch} />
+                    <Button color="primary" className="mt-2" onClick={searchButton}>検索</Button>
+                </div>
 
-            <div>
-                <label className="mr-2　border border-primary">タイトル検索</label>
-                <input type="text" className="form-control mr-2" name="search" value={search} onChange={handleSearch} />
-                <Button color="primary" className="mt-2" onClick={searchButton}>検索</Button>
-            </div>
-
-            <Table className="table mt-5">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>タイトル</TableCell>
-                        <TableCell>作成日</TableCell>
-                        <TableCell>更新日</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { Object.keys(todos).length !== 0 &&
-                        <RenderRows todos={ todos.slice(offset, offset + parpage)} />
-                    }
-                </TableBody>
-            </Table>
-            <Pagination
-                limit={parpage}
-                offset={offset}
-                total={todos.length}
-                onClick={(e, offset) => handleClickPagination(offset)}
-            />
-        </>
-    );
+                <Table className="table mt-5">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>タイトル</TableCell>
+                            <TableCell>作成日</TableCell>
+                            <TableCell>更新日</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { Object.keys(todos).length !== 0 &&
+                            <RenderRows todos={ todos.slice(offset, offset + parpage)} />
+                        }
+                    </TableBody>
+                </Table>
+                <Pagination
+                    limit={parpage}
+                    offset={offset}
+                    total={todos.length}
+                    onClick={(e, offset) => handleClickPagination(offset)}
+                />
+            </>
+        );
+    }
 }
 
 export default TodoApp;

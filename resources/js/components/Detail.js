@@ -23,7 +23,7 @@ function Detail() {
         dispatch(deleteTodo(data))
         .then(() => {
             history.push('/')
-        });
+        })
     }
 
     if(loading) {
