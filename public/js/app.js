@@ -9774,9 +9774,7 @@ function TodoApp() {
     var data = {
       title: search
     };
-    dispatch((0,_reducer_index__WEBPACK_IMPORTED_MODULE_6__.searchTodos)(data)); //.then(() => {
-    //    history.push({ pathname: `/`　});
-    //});
+    dispatch((0,_reducer_index__WEBPACK_IMPORTED_MODULE_6__.searchTodos)(data));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {

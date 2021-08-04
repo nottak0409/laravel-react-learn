@@ -76,9 +76,6 @@ function TodoApp() {
         event.preventDefault();
         const data = { title: search }
         dispatch(searchTodos(data))
-        //.then(() => {
-        //    history.push({ pathname: `/`　});
-        //});
     }
 
     return (
