@@ -10030,13 +10030,12 @@ function TodoApp() {
     return state.todos;
   };
 
-  var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector); //const todos_selector = useSelector(todosSelector)
+  var todos = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(todosSelector);
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
       _useState6 = _slicedToArray(_useState5, 2),
       search = _useState6[0],
-      setSearch = _useState6[1]; //const [todos, setTodos] = useState()
-
+      setSearch = _useState6[1];
 
   var loading = (0,react_redux__WEBPACK_IMPORTED_MODULE_5__.useSelector)(function (state) {
     return state.loading;
@@ -10044,11 +10043,7 @@ function TodoApp() {
 
   var handleClickPagination = function handleClickPagination(offset) {
     setOffset(offset);
-  }; //console.log(todos_selector);
-  //useEffect((todos_selector) => {
-  //    setTodos(todos_selector)
-  //}, []);
-  //タイトルの入力内容保存
+  }; //タイトルの入力内容保存
 
 
   var handleSearch = function handleSearch(event) {

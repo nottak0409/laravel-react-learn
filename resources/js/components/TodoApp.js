@@ -55,19 +55,12 @@ function TodoApp() {
     //ページレンダリング時の処理
     const todosSelector = (state) => state.todos
     const todos = useSelector(todosSelector)
-    //const todos_selector = useSelector(todosSelector)
     const [search, setSearch] = useState("")
-    //const [todos, setTodos] = useState()
     const loading = useSelector((state) => state.loading)
 
     const handleClickPagination = (offset) => {
         setOffset(offset);
     }
-
-    //console.log(todos_selector);
-    //useEffect((todos_selector) => {
-    //    setTodos(todos_selector)
-    //}, []);
 
     //タイトルの入力内容保存
     const handleSearch = (event) => {
