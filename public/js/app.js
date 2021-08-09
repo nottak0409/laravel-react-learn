@@ -9862,9 +9862,8 @@ function New() {
       title: title,
       content: content
     };
-    dispatch((0,_reducer_index__WEBPACK_IMPORTED_MODULE_2__.saveNewTodo)(data)).then(function () {
-      history.push('/');
-    });
+    dispatch((0,_reducer_index__WEBPACK_IMPORTED_MODULE_2__.saveNewTodo)(data));
+    history.push('/');
   };
 
   var handleClickPagination = function handleClickPagination(offset) {
