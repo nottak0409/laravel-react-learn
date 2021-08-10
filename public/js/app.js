@@ -9178,14 +9178,10 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "CREATE_MEMOS": () => (/* binding */ CREATE_MEMOS),
-/* harmony export */   "DELETE_MEMOS": () => (/* binding */ DELETE_MEMOS),
-/* harmony export */   "EDIT_MEMOS": () => (/* binding */ EDIT_MEMOS),
 /* harmony export */   "LOADED_MEMOS": () => (/* binding */ LOADED_MEMOS),
 /* harmony export */   "SUCCESS_LOADING": () => (/* binding */ SUCCESS_LOADING)
 /* harmony export */ });
 var CREATE_MEMOS = "ADD_MEMOS";
-var DELETE_MEMOS = "DELETE_MEMOS";
-var EDIT_MEMOS = "EDIT_MEMOS";
 var LOADED_MEMOS = "LOADED_MEMOS";
 var SUCCESS_LOADING = "SUCCESS_LOADING";
 
