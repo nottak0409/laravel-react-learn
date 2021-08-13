@@ -9177,11 +9177,9 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CREATE_MEMOS": () => (/* binding */ CREATE_MEMOS),
 /* harmony export */   "LOADED_MEMOS": () => (/* binding */ LOADED_MEMOS),
 /* harmony export */   "SUCCESS_LOADING": () => (/* binding */ SUCCESS_LOADING)
 /* harmony export */ });
-var CREATE_MEMOS = "ADD_MEMOS";
 var LOADED_MEMOS = "LOADED_MEMOS";
 var SUCCESS_LOADING = "SUCCESS_LOADING";
 
