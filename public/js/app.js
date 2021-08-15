@@ -9178,10 +9178,12 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LOADED_MEMOS": () => (/* binding */ LOADED_MEMOS),
-/* harmony export */   "SUCCESS_LOADING": () => (/* binding */ SUCCESS_LOADING)
+/* harmony export */   "SUCCESS_LOADING": () => (/* binding */ SUCCESS_LOADING),
+/* harmony export */   "FILTER_MEMOS": () => (/* binding */ FILTER_MEMOS)
 /* harmony export */ });
 var LOADED_MEMOS = "LOADED_MEMOS";
 var SUCCESS_LOADING = "SUCCESS_LOADING";
+var FILTER_MEMOS = "FILTER_MEMOS";
 
 /***/ }),
 

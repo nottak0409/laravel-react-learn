@@ -1,2 +1,3 @@
 export const LOADED_MEMOS = "LOADED_MEMOS";
 export const SUCCESS_LOADING = "SUCCESS_LOADING";
+export const FILTER_MEMOS = "FILTER_MEMOS";
