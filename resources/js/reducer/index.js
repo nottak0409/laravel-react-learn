@@ -1,6 +1,8 @@
 import {
     LOADED_MEMOS,
-    SUCCESS_LOADING
+    SUCCESS_LOADING,
+    FILTER_MEMOS,
+    STATUS_MEMOS
 } from '../actions/types.js';
 
 import { client } from '../api/client'
