@@ -2,3 +2,4 @@ export const LOADED_MEMOS = "LOADED_MEMOS";
 export const SUCCESS_LOADING = "SUCCESS_LOADING";
 export const FILTER_MEMOS = "FILTER_MEMOS";
 export const STATUS_MEMOS = "STATUS_MEMOS";
+export const CHENGE_STATUS  = "CHANGE_STATUS";
